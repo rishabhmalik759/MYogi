@@ -1,0 +1,119 @@
+//Fonts
+@font-face {
+  font-family: 'GT-Light';
+  font-style: normal;
+  font-weight: normal;
+  src: local('GT-Light'), url('./fonts/GTWalsheimPro-Light.ttf') format('woff');
+}
+@font-face {
+  font-family: 'GT-Medium';
+  font-style: normal;
+  font-weight: normal;
+  src: local('GT-Medium'),
+    url('./fonts/GTWalsheimPro-Medium.ttf') format('woff');
+}
+@font-face {
+  font-family: 'GT-Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('GT-Bold'), url('./fonts/GTWalsheimPro-Bold.ttf') format('woff');
+}
+
+:root {
+  --ion-font-family: 'GT-Light';
+}
+ion-item {
+  --ion-item-border-color: #fff;
+}
+
+ion-card {
+  border-radius: 10px;
+}
+
+h1,
+h2 {
+  font-family: 'GT-Bold';
+}
+h3,
+h4,
+h5 {
+  font-family: 'GT-Medium';
+}
+.mega-heading {
+  font-size: 3rem;
+}
+.image-width {
+  width: 94%;
+}
+//@media Mobile
+@media screen and (max-width: 800px) {
+  .mega-heading {
+    font-size: 2rem;
+  }
+}
+
+.dark-text {
+  color: #181818;
+}
+.light-text {
+  color: #fff;
+}
+.text-grey {
+  color: #ccc;
+  font-size: 1.3rem;
+}
+.heading {
+  font-family: 'GT-Bold';
+}
+
+.span-yellow {
+  color: #ffcc00;
+}
+.span-blue {
+  color: #00b2ff;
+}
+.span-purple {
+  color: #9663ff;
+}
+
+.underline-blue {
+  text-decoration: underline;
+  text-decoration-color: #0199ff;
+}
+.underline-yellow {
+  text-decoration: underline;
+  text-decoration-color: #ffcc00;
+}
+.dark-background {
+  --ion-background-color: #181818;
+  --background: #181818;
+  background: #181818;
+}
+.background-light {
+  --ion-background-color: #f9f9f9;
+  background: #f9f9f9;
+}
+.background-dark {
+  background: #181818;
+}
+.border-light {
+  border: 1px solid #f9f9f9;
+}
+
+.light-back .center {
+  text-align: center;
+  align-content: center;
+  margin: 0 auto;
+  justify-content: center;
+}
+.text-left {
+  text-align: left;
+}
+
+.footer {
+  min-height: 250px;
+}
+
+.note {
+  font-size: 0.9rem;
+}
