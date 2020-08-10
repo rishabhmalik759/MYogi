@@ -20,7 +20,11 @@ const HomeHeader: React.FC = () => {
             <IonIcon icon={personCircle} style={{ color: 'white' }}></IonIcon>
           </IonButton>
 
-          <IonImg className="logo" src="/assets/images/logoWhite.png"></IonImg>
+          <IonImg
+            className="logo"
+            alt="MYogi Logo"
+            src="/assets/images/logoWhite.png"
+          ></IonImg>
         </IonToolbar>
       </IonHeader>
       <div

@@ -15,8 +15,8 @@ const Transformation: React.FC = () => {
         style={{ justifyContent: 'right', margin: 'auto' }}
       >
         <img
-          width="300px"
-          src="/assets/images/tempService.png"
+          className="back-img"
+          src="/assets/images/servicesBackground.png"
           alt="MYOGI Services"
         ></img>
       </div>

@@ -75,6 +75,24 @@ h5 {
 .span-purple {
   color: #9663ff;
 }
+.span-green {
+  color: #00cc88;
+}
+.span-pink {
+  color: #ff3366;
+}
+.underline-pink {
+  text-decoration: underline;
+  text-decoration-color: #ff3366;
+}
+.underline-purple {
+  text-decoration: underline;
+  text-decoration-color: #9663ff;
+}
+.underline-green {
+  text-decoration: underline;
+  text-decoration-color: #00cc88;
+}
 
 .underline-blue {
   text-decoration: underline;
@@ -100,7 +118,7 @@ h5 {
   border: 1px solid #f9f9f9;
 }
 
-.light-back .center {
+.center {
   text-align: center;
   align-content: center;
   margin: 0 auto;
@@ -116,4 +134,14 @@ h5 {
 
 .note {
   font-size: 0.9rem;
+}
+
+//added colors
+.ion-color-pink {
+  --ion-color-base: var(--ion-color-pink) !important;
+  --ion-color-base-rgb: var(--ion-color-pink-rgb) !important;
+  --ion-color-contrast: var(--ion-color-pink-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-pink-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-pink-shade) !important;
+  --ion-color-tint: var(--ion-color-pink-tint) !important;
 }

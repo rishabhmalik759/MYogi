@@ -8,6 +8,9 @@ import Community from '../components/home/Community';
 import Transformation from '../components/home/Transformation';
 import HomeHeader from '../components/home/HomeHeader';
 import HeaderStrip from '../components/home/HeaderStrip';
+import Reviews from '../components/home/Reviews';
+import ShortVideos from '../components/home/ShortVideos';
+import Footer from '../components/home/Footer';
 
 const Home: React.FC = () => {
   return (
@@ -18,7 +21,9 @@ const Home: React.FC = () => {
         <Transformation></Transformation>
         <Community></Community>
         <Pricing></Pricing>
-        <div className="footer"></div>
+        <Reviews></Reviews>
+        <ShortVideos></ShortVideos>
+        <Footer></Footer>
       </IonContent>
     </IonPage>
   );
