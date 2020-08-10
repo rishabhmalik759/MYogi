@@ -16,7 +16,6 @@ import { motion } from 'framer-motion';
 const Pricing: React.FC = () => {
   const [selectedTabSingle, setSelectedTabSingle] = useState<any>('Week');
   const [selectedTabPartner, setSelectedTabPartner] = useState<any>('Week');
-  const [selectedTabGroup, setSelectedTabGroup] = useState<any>('Week');
   const membershipFeatures: JSX.Element = (
     <div className="p-3" style={{ borderTop: '1px solid #f9f9f9' }}>
       <h5 className="text-light underline-purple">Membership Includes</h5>

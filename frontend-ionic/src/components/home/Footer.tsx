@@ -1,11 +1,4 @@
-import {
-  IonIcon,
-  IonButton,
-  IonItem,
-  IonCard,
-  IonInput,
-  IonImg,
-} from '@ionic/react';
+import { IonIcon, IonButton, IonItem, IonInput, IonImg } from '@ionic/react';
 import React, { useState } from 'react';
 import {
   logoYoutube,

@@ -1,23 +1,15 @@
 import {
-  IonButton,
-  IonLabel,
   IonCard,
-  IonSegment,
-  IonSegmentButton,
-  IonCardHeader,
   IonList,
   IonItem,
   IonText,
   IonImg,
   IonSlides,
   IonSlide,
-  IonIcon,
   IonAvatar,
   IonCardContent,
-  IonCardSubtitle,
 } from '@ionic/react';
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 
 const Reviews: React.FC = () => {
   return (

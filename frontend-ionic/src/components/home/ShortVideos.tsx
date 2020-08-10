@@ -3,22 +3,13 @@
 
 import {
   IonButton,
-  IonLabel,
   IonCard,
-  IonSegment,
-  IonSegmentButton,
   IonCardHeader,
-  IonList,
-  IonItem,
-  IonText,
-  IonImg,
   IonSlides,
   IonSlide,
-  IonCardSubtitle,
   IonCardContent,
 } from '@ionic/react';
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 import { useWindowSize } from '../UseWindowSize';
 
 const ShortVideos: React.FC = () => {
@@ -49,7 +40,7 @@ const ShortVideos: React.FC = () => {
           <IonCard>
             <IonCardHeader>
               <div>
-                <img src="https://via.placeholder.com/350x150"></img>
+                <img alt="temp" src="https://via.placeholder.com/350x150"></img>
               </div>
             </IonCardHeader>
             <IonCardContent>
@@ -62,7 +53,7 @@ const ShortVideos: React.FC = () => {
         <IonSlide>
           <IonCard>
             <IonCardHeader>
-              <img src="https://via.placeholder.com/350x150"></img>
+              <img alt="temp" src="https://via.placeholder.com/350x150"></img>
             </IonCardHeader>
             <IonCardContent>
               <h2 className="text-light text-left">
@@ -74,7 +65,7 @@ const ShortVideos: React.FC = () => {
         <IonSlide>
           <IonCard>
             <IonCardHeader>
-              <img src="https://via.placeholder.com/350x150"></img>
+              <img alt="temp" src="https://via.placeholder.com/350x150"></img>
             </IonCardHeader>
             <IonCardContent>
               <h2 className="text-light text-left">
@@ -86,7 +77,7 @@ const ShortVideos: React.FC = () => {
         <IonSlide>
           <IonCard>
             <IonCardHeader>
-              <img src="https://via.placeholder.com/350x150"></img>
+              <img alt="temp" src="https://via.placeholder.com/350x150"></img>
             </IonCardHeader>
             <IonCardContent>
               <h2 className="text-light text-left">
@@ -98,7 +89,7 @@ const ShortVideos: React.FC = () => {
         <IonSlide>
           <IonCard>
             <IonCardHeader>
-              <img src="https://via.placeholder.com/350x150"></img>
+              <img alt="temp" src="https://via.placeholder.com/350x150"></img>
             </IonCardHeader>
             <IonCardContent>
               <h2 className="text-light text-left">
@@ -110,7 +101,7 @@ const ShortVideos: React.FC = () => {
         <IonSlide>
           <IonCard>
             <IonCardHeader>
-              <img src="https://via.placeholder.com/350x150"></img>
+              <img alt="temp" src="https://via.placeholder.com/350x150"></img>
             </IonCardHeader>
             <IonCardContent>
               <h2 className="text-light text-left">
@@ -122,7 +113,11 @@ const ShortVideos: React.FC = () => {
         <IonSlide>
           <IonCard>
             <IonCardHeader>
-              <img width="350" src="https://via.placeholder.com/350x150"></img>
+              <img
+                alt="temp"
+                width="350"
+                src="https://via.placeholder.com/350x150"
+              ></img>
             </IonCardHeader>
             <IonCardContent>
               <h2 className="text-light text-left">
@@ -134,7 +129,7 @@ const ShortVideos: React.FC = () => {
         <IonSlide>
           <IonCard>
             <IonCardHeader>
-              <img src="https://via.placeholder.com/350x150"></img>
+              <img alt="temp" src="https://via.placeholder.com/350x150"></img>
             </IonCardHeader>
             <IonCardContent>
               <h2 className="text-light text-left">
