@@ -8,6 +8,8 @@ import {
 import React from 'react';
 import { menu, personCircle, arrowForwardCircle } from 'ionicons/icons';
 
+import LoginModal from '../auth/login';
+
 import { useModalContext } from '../../contexts/ModalContext';
 import { setLoginModal, setSignupModal } from '../../contexts/actions';
 
@@ -17,6 +19,7 @@ const HomeHeader: React.FC = () => {
   return (
     <div>
       <IonHeader>
+        <LoginModal></LoginModal>
         <IonToolbar className="dark-background">
           <IonButton
             slot="start"

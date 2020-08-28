@@ -7,6 +7,7 @@ const reducer = (state: IState, action: TAction): IState => {
 
   switch (type) {
     case types.SET_LOGIN_MODAL:
+      console.log(payload);
       return { ...state, loginModal: payload };
     case types.SET_SIGNUP_MODAL:
       return { ...state, signupModal: payload };

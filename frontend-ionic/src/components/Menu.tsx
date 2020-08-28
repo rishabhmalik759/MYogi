@@ -18,17 +18,8 @@ import {
   bookmarkOutline,
   heartOutline,
   heartSharp,
-  mailOutline,
-  mailSharp,
-  paperPlaneOutline,
-  paperPlaneSharp,
-  trashOutline,
-  trashSharp,
-  warningOutline,
-  warningSharp,
   calendarOutline,
   cameraOutline,
-  videocamOutline,
 } from 'ionicons/icons';
 import './Menu.css';
 
