@@ -8,12 +8,21 @@ import {
 import React from 'react';
 import { menu, personCircle, arrowForwardCircle } from 'ionicons/icons';
 
+import { useModalContext } from '../../contexts/ModalContext';
+import { setLoginModal, setSignupModal } from '../../contexts/actions';
+
 const HomeHeader: React.FC = () => {
+  const { dispatch } = useModalContext();
+
   return (
     <div>
       <IonHeader>
         <IonToolbar className="dark-background">
-          <IonButton slot="start" className="m-2">
+          <IonButton
+            slot="start"
+            className="m-2"
+            onClick={() => dispatch(setLoginModal(true))}
+          >
             <IonIcon icon={menu} style={{ color: 'white' }}></IonIcon>
           </IonButton>
           <IonButton slot="end" className="m-2">

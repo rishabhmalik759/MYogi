@@ -12,7 +12,24 @@ import {
 
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { archiveOutline, archiveSharp, bookmarkOutline, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
+import {
+  archiveOutline,
+  archiveSharp,
+  bookmarkOutline,
+  heartOutline,
+  heartSharp,
+  mailOutline,
+  mailSharp,
+  paperPlaneOutline,
+  paperPlaneSharp,
+  trashOutline,
+  trashSharp,
+  warningOutline,
+  warningSharp,
+  calendarOutline,
+  cameraOutline,
+  videocamOutline,
+} from 'ionicons/icons';
 import './Menu.css';
 
 interface AppPage {
@@ -24,41 +41,29 @@ interface AppPage {
 
 const appPages: AppPage[] = [
   {
-    title: 'Inbox',
+    title: 'Sessions',
     url: '/page/Inbox',
-    iosIcon: mailOutline,
-    mdIcon: mailSharp
+    iosIcon: cameraOutline,
+    mdIcon: cameraOutline,
   },
   {
-    title: 'Outbox',
+    title: 'Calendar',
     url: '/page/Outbox',
-    iosIcon: paperPlaneOutline,
-    mdIcon: paperPlaneSharp
+    iosIcon: calendarOutline,
+    mdIcon: calendarOutline,
   },
   {
-    title: 'Favorites',
+    title: 'Short Videos',
     url: '/page/Favorites',
     iosIcon: heartOutline,
-    mdIcon: heartSharp
+    mdIcon: heartSharp,
   },
   {
-    title: 'Archived',
+    title: 'Settings',
     url: '/page/Archived',
     iosIcon: archiveOutline,
-    mdIcon: archiveSharp
+    mdIcon: archiveSharp,
   },
-  {
-    title: 'Trash',
-    url: '/page/Trash',
-    iosIcon: trashOutline,
-    mdIcon: trashSharp
-  },
-  {
-    title: 'Spam',
-    url: '/page/Spam',
-    iosIcon: warningOutline,
-    mdIcon: warningSharp
-  }
 ];
 
 const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
@@ -70,14 +75,27 @@ const Menu: React.FC = () => {
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Inbox</IonListHeader>
+          <IonListHeader className="text-light">Inbox</IonListHeader>
           <IonNote>hi@ionicframework.com</IonNote>
           {appPages.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
-                <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
-                  <IonIcon slot="start" ios={appPage.iosIcon} md={appPage.mdIcon} />
-                  <IonLabel>{appPage.title}</IonLabel>
+                <IonItem
+                  className={
+                    location.pathname === appPage.url ? 'selected' : ''
+                  }
+                  routerLink={appPage.url}
+                  routerDirection="none"
+                  lines="none"
+                  detail={false}
+                >
+                  <IonIcon
+                    className="text-light"
+                    slot="start"
+                    ios={appPage.iosIcon}
+                    md={appPage.mdIcon}
+                  />
+                  <IonLabel className="text-light">{appPage.title}</IonLabel>
                 </IonItem>
               </IonMenuToggle>
             );
@@ -88,8 +106,12 @@ const Menu: React.FC = () => {
           <IonListHeader>Labels</IonListHeader>
           {labels.map((label, index) => (
             <IonItem lines="none" key={index}>
-              <IonIcon slot="start" icon={bookmarkOutline} />
-              <IonLabel>{label}</IonLabel>
+              <IonIcon
+                className="text-light"
+                slot="start"
+                icon={bookmarkOutline}
+              />
+              <IonLabel className="text-light">{label}</IonLabel>
             </IonItem>
           ))}
         </IonList>

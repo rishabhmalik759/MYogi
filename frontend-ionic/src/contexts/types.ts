@@ -1,0 +1,4 @@
+export const SET_LOGIN_MODAL = 'SET_LOGIN_MODAL';
+export type SET_LOGIN_MODAL = typeof SET_LOGIN_MODAL;
+export const SET_SIGNUP_MODAL = 'SET_SIGNUP_MODAL';
+export type SET_SIGNUP_MODAL = typeof SET_SIGNUP_MODAL;
