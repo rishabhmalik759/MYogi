@@ -11,11 +11,13 @@ import HeaderStrip from '../components/home/HeaderStrip';
 import Reviews from '../components/home/Reviews';
 import ShortVideos from '../components/home/ShortVideos';
 import Footer from '../components/home/Footer';
+import Modal from '../components/modal/Modal';
 
 const Home: React.FC = () => {
   return (
     <IonPage>
       <IonContent>
+        <Modal></Modal>
         <HomeHeader></HomeHeader>
         <HeaderStrip></HeaderStrip>
         <Transformation></Transformation>

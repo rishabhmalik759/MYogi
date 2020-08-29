@@ -113,3 +113,21 @@ strike.straight::before {
     width: 50%;
   }
 }
+
+//login form
+.login-form {
+  ion-input {
+    --background: '#fff';
+    background-color: #fff;
+    border-radius: 10px;
+    --padding-start: 10px;
+  }
+  .center-login {
+    margin: 0 auto;
+  }
+}
+
+//Community
+.image-width {
+  width: 94%;
+}

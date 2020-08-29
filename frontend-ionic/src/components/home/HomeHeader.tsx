@@ -8,24 +8,23 @@ import {
 import React from 'react';
 import { menu, personCircle, arrowForwardCircle } from 'ionicons/icons';
 
-import LoginModal from '../auth/login';
+import { useModalContext } from '../../store/contexts/ModalContext';
+import { setModal } from '../../store/actions/modalActions';
 
-import { useModalContext } from '../../contexts/ModalContext';
-import { setLoginModal, setSignupModal } from '../../contexts/actions';
+import { modalNames } from '../modal/Modal';
 
 const HomeHeader: React.FC = () => {
   const { dispatch } = useModalContext();
 
+  const handleModalOpen = () => {
+    dispatch(setModal({ modalActive: true, name: modalNames.loginModalName }));
+  };
+
   return (
     <div>
       <IonHeader>
-        <LoginModal></LoginModal>
         <IonToolbar className="dark-background">
-          <IonButton
-            slot="start"
-            className="m-2"
-            onClick={() => dispatch(setLoginModal(true))}
-          >
+          <IonButton slot="start" className="m-2" onClick={handleModalOpen}>
             <IonIcon icon={menu} style={{ color: 'white' }}></IonIcon>
           </IonButton>
           <IonButton slot="end" className="m-2">

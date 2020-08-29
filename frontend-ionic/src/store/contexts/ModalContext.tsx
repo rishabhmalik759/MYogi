@@ -1,21 +1,22 @@
 import React, { createContext, Dispatch, useReducer, useContext } from 'react';
-import { TAction } from './actions';
-import initialState, { IState } from './initialState';
-import reducer from './reducer';
+import reducer from '../reducers/modalReducer';
+import { TAction } from '../actions/modalActions';
+import { IStateModal, ModalInitialState } from './modalInitialState';
 
-interface IContextProps {
-  state: IState;
+export interface IContextProps {
+  state: IStateModal;
   dispatch: Dispatch<TAction>;
 }
+
 const ModalContext = createContext<IContextProps>({
   dispatch: () => {
     // Dispatch initial value
   },
-  state: initialState,
+  state: ModalInitialState,
 });
 
 const ModalProvider: React.FC<{}> = (props: any) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, ModalInitialState);
 
   return <ModalContext.Provider value={{ state, dispatch }} {...props} />;
 };
