@@ -1,7 +1,6 @@
 import { TAction } from '../actions/modalActions';
 import { IStateModal } from '../contexts/modalInitialState';
 import * as types from '../types/modalTypes';
-import Modal from '../../components/modal/Modal';
 
 const reducer = (state: IStateModal, action: TAction): IStateModal => {
   const { type, payload } = action;

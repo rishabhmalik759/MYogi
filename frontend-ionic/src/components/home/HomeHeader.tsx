@@ -16,18 +16,22 @@ import { modalNames } from '../modal/Modal';
 const HomeHeader: React.FC = () => {
   const { dispatch } = useModalContext();
 
-  const handleModalOpen = () => {
-    dispatch(setModal({ modalActive: true, name: modalNames.loginModalName }));
-  };
+  function handleModalOpen(name: string) {
+    dispatch(setModal({ modalActive: true, name: name }));
+  }
 
   return (
     <div>
       <IonHeader>
         <IonToolbar className="dark-background">
-          <IonButton slot="start" className="m-2" onClick={handleModalOpen}>
+          <IonButton slot="start" className="m-2">
             <IonIcon icon={menu} style={{ color: 'white' }}></IonIcon>
           </IonButton>
-          <IonButton slot="end" className="m-2">
+          <IonButton
+            slot="end"
+            className="m-2"
+            onClick={() => handleModalOpen(modalNames.loginModalName)}
+          >
             <IonIcon icon={personCircle} style={{ color: 'white' }}></IonIcon>
           </IonButton>
 
@@ -59,7 +63,9 @@ const HomeHeader: React.FC = () => {
             MYOGI is the best platform to stay fit at home through Yoga and
             Dietitian
           </p>
-          <IonButton>
+          <IonButton
+            onClick={() => handleModalOpen(modalNames.signUpModalName)}
+          >
             Sign Up for free
             <IonIcon slot="end" icon={arrowForwardCircle}></IonIcon>
           </IonButton>

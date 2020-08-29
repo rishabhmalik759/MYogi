@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react';
 
+//modals
 import {
   IonContent,
   IonHeader,
@@ -13,36 +14,37 @@ import {
   IonImg,
 } from '@ionic/react';
 import { closeCircle } from 'ionicons/icons';
-
 import { useModalContext } from '../../../store/contexts/ModalContext';
 import { setModal } from '../../../store/actions/modalActions';
 import { modalNames } from '../Modal';
 
-export const loginModalName = 'LOGIN_MODAL';
+export const signUpModalName = 'SIGNUP_MODAL';
 
-const LoginModal: React.FC = () => {
+const SignUpModal = (props: any) => {
   const { dispatch } = useModalContext();
 
   const handleModalClose = () => {
     dispatch(setModal({ modalActive: false, name: '' }));
   };
-  const openSignUpModal = async () => {
+
+  const openLoginModal = async () => {
     await handleModalClose;
     await dispatch(
-      setModal({ modalActive: true, name: modalNames.signUpModalName })
+      setModal({ modalActive: true, name: modalNames.loginModalName })
     );
   };
-
   //form data
-  const [loginData, setLoginData] = useState({
-    emailLogin: '',
-    passwordLogin: '',
+  const [signUpData, setSignUpData] = useState({
+    email: '',
+    password: '',
+    password2: '',
+    name: '',
   });
-  const { emailLogin, passwordLogin } = loginData;
+  const { name, email, password, password2 } = signUpData;
 
-  const onChangeLogin = (e: any) => {
-    setLoginData({ ...loginData, [e.target.name]: e.target.value });
-    console.log(loginData);
+  const onChange = (e: any) => {
+    setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
+    console.log(signUpData);
   };
   //end form data
 
@@ -50,7 +52,7 @@ const LoginModal: React.FC = () => {
     <Fragment>
       <IonHeader color="dark">
         <IonToolbar className="dark-background">
-          <IonTitle color="light">Login</IonTitle>
+          <IonTitle color="light">SignUp</IonTitle>
           <IonButtons slot="end">
             <IonButton color="primary" onClick={handleModalClose}>
               <IonIcon icon={closeCircle} size="large"></IonIcon>
@@ -58,38 +60,55 @@ const LoginModal: React.FC = () => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen className="login-form">
+      <IonContent fullscreen>
         <div className="p-3 login-form">
+          <div className="col-md-8 center-login p-2">
+            <IonLabel color="light">Enter your Name</IonLabel>
+            <IonInput
+              name="name"
+              value={name}
+              onIonChange={(e) => onChange(e)}
+              placeholder="Name"
+            />
+          </div>
           <div className="col-md-8 center-login p-2">
             <IonLabel color="light">Enter your Email</IonLabel>
             <IonInput
-              name="emailLogin"
-              type="email"
-              value={emailLogin}
-              onIonChange={(e) => onChangeLogin(e)}
+              name="email"
+              value={email}
+              onIonChange={(e) => onChange(e)}
               placeholder="Email"
             />
           </div>
           <div className="col-md-8 center-login p-2">
             <IonLabel color="light">Enter your Password</IonLabel>
             <IonInput
-              name="passwordLogin"
-              value={passwordLogin}
-              onIonChange={(e) => onChangeLogin(e)}
+              name="password"
+              value={password}
+              onIonChange={(e) => onChange(e)}
               placeholder="Password"
             />
           </div>
+          <div className="col-md-8 center-login p-2">
+            <IonLabel color="light">Re-enter your Password</IonLabel>
+            <IonInput
+              name="password2"
+              value={password2}
+              onIonChange={(e) => onChange(e)}
+              placeholder="Re-Enter Password"
+            />
+          </div>
           <div className="col-md-8 center p-2">
-            <IonButton color="primary">Login</IonButton>
+            <IonButton color="primary">SignUp</IonButton>
           </div>
         </div>
         <div className="center">
           <div className="text-light">
-            <p>Don't have an account?</p>
+            <p>Already have an account?</p>
           </div>
           <div>
-            <IonButton color="pink" onClick={openSignUpModal}>
-              Sign Up Now
+            <IonButton color="pink" onClick={openLoginModal}>
+              Sign-in Now
             </IonButton>
           </div>
         </div>
@@ -106,4 +125,4 @@ const LoginModal: React.FC = () => {
   );
 };
 
-export default LoginModal;
+export default SignUpModal;

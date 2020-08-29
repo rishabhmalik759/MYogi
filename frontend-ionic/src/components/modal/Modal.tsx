@@ -5,6 +5,7 @@ import { IonModal } from '@ionic/react';
 import { useModalContext } from '../../store/contexts/ModalContext';
 import { setModal } from '../../store/actions/modalActions';
 import LoginModal, { loginModalName } from './auth/LoginModal';
+import SignUpModal, { signUpModalName } from './auth/SignUpModal';
 
 const Modal: React.FC = () => {
   const { state, dispatch } = useModalContext();
@@ -18,10 +19,11 @@ const Modal: React.FC = () => {
     <Fragment>
       <IonModal isOpen={modalActive} onDidDismiss={handleModalClose}>
         {name === loginModalName && <LoginModal />}
+        {name === signUpModalName && <SignUpModal />}
       </IonModal>
     </Fragment>
   );
 };
 
-export const modalNames = { loginModalName };
+export const modalNames = { loginModalName, signUpModalName };
 export default Modal;
