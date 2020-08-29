@@ -1,7 +1,7 @@
 import React, { createContext, Dispatch, useReducer, useContext } from 'react';
 import reducer from '../reducers/modalReducer';
 import { TAction } from '../actions/modalActions';
-import { IStateModal, ModalInitialState } from './modalInitialState';
+import { IStateModal, ModalInitialState } from './initialStates';
 
 export interface IContextProps {
   state: IStateModal;

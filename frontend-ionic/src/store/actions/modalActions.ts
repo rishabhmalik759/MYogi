@@ -1,5 +1,5 @@
 import * as types from '../types/modalTypes';
-import { IStateModal } from '../contexts/modalInitialState';
+import { IStateModal } from '../contexts/initialStates';
 
 export interface ISetModal {
   type: types.SET_MODAL;

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 
 //modals
 import {
@@ -17,11 +17,15 @@ import { closeCircle } from 'ionicons/icons';
 import { useModalContext } from '../../../store/contexts/ModalContext';
 import { setModal } from '../../../store/actions/modalActions';
 import { modalNames } from '../Modal';
+import { useHistory } from 'react-router-dom';
+import firebase from '../../../firebase';
+import { AuthContext } from '../../../store/contexts/AuthContext';
 
 export const signUpModalName = 'SIGNUP_MODAL';
 
 const SignUpModal = (props: any) => {
   const { dispatch } = useModalContext();
+  const authContext = useContext(AuthContext);
 
   const handleModalClose = () => {
     dispatch(setModal({ modalActive: false, name: '' }));
@@ -47,6 +51,34 @@ const SignUpModal = (props: any) => {
     console.log(signUpData);
   };
   //end form data
+
+  const history = useHistory();
+
+  const handleSubmit = (event: any) => {
+    event?.preventDefault();
+    console.log(signUpData, 'values');
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredential: firebase.auth.UserCredential) => {
+        authContext.setUser(userCredential);
+        const db = firebase.firestore();
+        db.collection('Users')
+          .doc(userCredential.user!.uid)
+          .set({
+            email: email,
+            name: name,
+          })
+          .then(() => {
+            console.log('ok');
+            history.push('/');
+          })
+          .catch((error) => {
+            console.log(error.message);
+            alert(error.message);
+          });
+      });
+  };
 
   return (
     <Fragment>
@@ -99,7 +131,9 @@ const SignUpModal = (props: any) => {
             />
           </div>
           <div className="col-md-8 center p-2">
-            <IonButton color="primary">SignUp</IonButton>
+            <IonButton color="primary" onClick={handleSubmit}>
+              SignUp
+            </IonButton>
           </div>
         </div>
         <div className="center">
