@@ -1,12 +1,13 @@
 import React, { createContext, Dispatch, useReducer, useContext } from 'react';
-import reducer from '../reducers/modalReducer';
-import { TAction } from '../actions/modalActions';
+import * as reducers from '../reducers';
+import * as TActions from '../actions';
 import { IStateModal, ModalInitialState } from './initialStates';
 
 export interface IContextProps {
   state: IStateModal;
-  dispatch: Dispatch<TAction>;
+  dispatch: Dispatch<TActions.ISetModal>;
 }
+const modalReducer = reducers.modalReducer;
 
 const ModalContext = createContext<IContextProps>({
   dispatch: () => {
@@ -16,7 +17,7 @@ const ModalContext = createContext<IContextProps>({
 });
 
 const ModalProvider: React.FC<{}> = (props: any) => {
-  const [state, dispatch] = useReducer(reducer, ModalInitialState);
+  const [state, dispatch] = useReducer(modalReducer, ModalInitialState);
 
   return <ModalContext.Provider value={{ state, dispatch }} {...props} />;
 };

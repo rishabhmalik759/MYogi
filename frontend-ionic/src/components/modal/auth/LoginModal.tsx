@@ -15,8 +15,8 @@ import {
 import { closeCircle } from 'ionicons/icons';
 
 import { useModalContext } from '../../../store/contexts/ModalContext';
-import { AuthContext } from '../../../store/contexts/AuthContext';
-import { setModal } from '../../../store/actions/modalActions';
+// import { AuthContext } from '../../../store/contexts/AuthContext';
+import { setModal } from '../../../store/actions';
 import { modalNames } from '../Modal';
 import firebase from 'firebase';
 import { useHistory } from 'react-router-dom';
@@ -25,7 +25,7 @@ export const loginModalName = 'LOGIN_MODAL';
 
 const LoginModal: React.FC = () => {
   const { dispatch } = useModalContext();
-  const authContext = useContext(AuthContext);
+  // const authContext = useContext(AuthContext);
 
   const handleModalClose = () => {
     dispatch(setModal({ modalActive: false, name: '' }));

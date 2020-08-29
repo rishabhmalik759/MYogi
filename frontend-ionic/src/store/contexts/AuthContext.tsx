@@ -1,32 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, Dispatch, useReducer, useContext } from 'react';
+import * as reducers from '../reducers';
+import * as TActions from '../actions';
+import { IFirebaseState, FirebaseAuthInitialState } from './initialStates';
 import firebase from '../../firebase';
-type ContextProps = {
-  user: firebase.User | null;
-  authenticated: boolean;
-  setUser: any;
-  loadingAuthState: boolean;
-};
-export const AuthContext = React.createContext<Partial<ContextProps>>({});
+import { useEffect } from 'react';
 
-export const AuthProvider = ({ children }: any) => {
-  const [user, setUser] = useState(null as firebase.User | null);
-  const [loadingAuthState, setLoadingAuthState] = useState(true);
+export interface IFirebaseContextProps {
+  state: IFirebaseState;
+  dispatch: Dispatch<TActions.IAuthUser>;
+}
+// export const AuthContext = React.createContext<Partial<ContextProps>>({});
+const FirebaseAuthContext = createContext<IFirebaseContextProps>({
+  dispatch: () => {
+    // Dispatch initial value
+  },
+  state: FirebaseAuthInitialState,
+});
+const firebaseAuthReducer = reducers.firebaseAuthReducer;
+
+const FirebaseAuthProvider: React.FC<{}> = (props: any) => {
+  const [state, dispatch] = useReducer(
+    firebaseAuthReducer,
+    FirebaseAuthInitialState
+  );
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user: any) => {
-      setUser(user);
-      setLoadingAuthState(false);
+      dispatch(TActions.authUser(user));
     });
   }, []);
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        authenticated: user !== null,
-        setUser: [user, setUser],
-        loadingAuthState,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
+    <FirebaseAuthContext.Provider value={{ state, dispatch }} {...props} />
   );
 };
+
+function useFirebaseAuthContext() {
+  return useContext(FirebaseAuthContext);
+}
+
+export { FirebaseAuthProvider, useFirebaseAuthContext };

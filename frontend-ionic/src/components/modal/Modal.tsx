@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import { IonModal } from '@ionic/react';
 
 import { useModalContext } from '../../store/contexts/ModalContext';
-import { setModal } from '../../store/actions/modalActions';
+import { setModal } from '../../store/actions';
 import LoginModal, { loginModalName } from './auth/LoginModal';
 import SignUpModal, { signUpModalName } from './auth/SignUpModal';
 

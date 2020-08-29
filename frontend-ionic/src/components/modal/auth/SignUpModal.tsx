@@ -15,26 +15,28 @@ import {
 } from '@ionic/react';
 import { closeCircle } from 'ionicons/icons';
 import { useModalContext } from '../../../store/contexts/ModalContext';
-import { setModal } from '../../../store/actions/modalActions';
+import * as TActions from '../../../store/actions';
 import { modalNames } from '../Modal';
 import { useHistory } from 'react-router-dom';
 import firebase from '../../../firebase';
-import { AuthContext } from '../../../store/contexts/AuthContext';
+import { useFirebaseAuthContext } from '../../../store/contexts/AuthContext';
 
 export const signUpModalName = 'SIGNUP_MODAL';
 
 const SignUpModal = (props: any) => {
   const { dispatch } = useModalContext();
-  const authContext = useContext(AuthContext);
+  const firebaseDispatch = useFirebaseAuthContext().dispatch;
+
+  // const authContext = useContext(AuthContext);
 
   const handleModalClose = () => {
-    dispatch(setModal({ modalActive: false, name: '' }));
+    dispatch(TActions.setModal({ modalActive: false, name: '' }));
   };
 
   const openLoginModal = async () => {
     await handleModalClose;
     await dispatch(
-      setModal({ modalActive: true, name: modalNames.loginModalName })
+      TActions.setModal({ modalActive: true, name: modalNames.loginModalName })
     );
   };
   //form data
@@ -48,7 +50,7 @@ const SignUpModal = (props: any) => {
 
   const onChange = (e: any) => {
     setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
-    console.log(signUpData);
+    // console.log(signUpData);
   };
   //end form data
 
@@ -61,7 +63,7 @@ const SignUpModal = (props: any) => {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential: firebase.auth.UserCredential) => {
-        authContext.setUser(userCredential);
+        firebaseDispatch(TActions.authUser(userCredential));
         const db = firebase.firestore();
         db.collection('Users')
           .doc(userCredential.user!.uid)

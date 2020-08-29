@@ -9,7 +9,7 @@ import React from 'react';
 import { menu, personCircle, arrowForwardCircle } from 'ionicons/icons';
 
 import { useModalContext } from '../../store/contexts/ModalContext';
-import { setModal } from '../../store/actions/modalActions';
+import * as TActions from '../../store/actions';
 
 import { modalNames } from '../modal/Modal';
 
@@ -17,7 +17,7 @@ const HomeHeader: React.FC = () => {
   const { dispatch } = useModalContext();
 
   function handleModalOpen(name: string) {
-    dispatch(setModal({ modalActive: true, name: name }));
+    dispatch(TActions.setModal({ modalActive: true, name: name }));
   }
 
   return (
