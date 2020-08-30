@@ -1,7 +1,7 @@
 import * as TActions from '../actions';
 import { IStateModal, IFirebaseState } from '../contexts/initialStates';
 import * as types from '../types';
-import firebase from '../../firebase';
+// import firebase from '../../firebase';
 
 const modalReducer = (
   state: IStateModal,

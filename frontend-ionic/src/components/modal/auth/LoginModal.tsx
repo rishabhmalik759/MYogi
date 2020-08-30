@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useContext } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import {
   IonContent,
@@ -18,8 +18,8 @@ import { useModalContext } from '../../../store/contexts/ModalContext';
 // import { AuthContext } from '../../../store/contexts/AuthContext';
 import { setModal } from '../../../store/actions';
 import { modalNames } from '../Modal';
-import firebase from 'firebase';
-import { useHistory } from 'react-router-dom';
+// import firebase from 'firebase';
+// import { useHistory } from 'react-router-dom';
 
 export const loginModalName = 'LOGIN_MODAL';
 
