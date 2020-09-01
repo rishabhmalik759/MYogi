@@ -1,5 +1,5 @@
 import * as TActions from '../actions';
-import { IStateModal, IFirebaseState } from '../contexts/initialStates';
+import { IStateModal, IAppUserState } from '../contexts/initialStates';
 import * as types from '../types';
 // import firebase from '../../firebase';
 
@@ -19,20 +19,23 @@ const modalReducer = (
   }
 };
 
-const firebaseAuthReducer = (
-  state: IFirebaseState,
-  action: TActions.IAuthUser
-): IFirebaseState => {
-  const { type, payload } = action;
-  const { user } = payload;
-
-  switch (type) {
-    case types.FIREBASE_AUTH:
-      console.log(user);
-      return { ...state, user: user, authenticated: user !== null };
+const appUserReducer = (
+  state: IAppUserState,
+  action: TActions.ILoginUser | TActions.ILogoutUser
+): IAppUserState => {
+  switch (action.type) {
+    case types.LOGIN_USER:
+      return {
+        ...state,
+        user: action.payload.user,
+        isAuthenticated: true,
+        loading: false,
+      };
+    case types.LOGOUT_USER:
+      return { ...state, user: null, isAuthenticated: false, loading: false };
     default:
       return state;
   }
 };
 
-export { modalReducer, firebaseAuthReducer };
+export { modalReducer, appUserReducer };

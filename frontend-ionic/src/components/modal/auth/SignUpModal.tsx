@@ -19,13 +19,13 @@ import * as TActions from '../../../store/actions';
 import { modalNames } from '../Modal';
 import { useHistory } from 'react-router-dom';
 import firebase from '../../../firebase';
-import { useFirebaseAuthContext } from '../../../store/contexts/AuthContext';
+import { useAppUserContext } from '../../../store/contexts/AuthContext';
 
 export const signUpModalName = 'SIGNUP_MODAL';
 
 const SignUpModal = (props: any) => {
   const { dispatch } = useModalContext();
-  const firebaseDispatch = useFirebaseAuthContext().dispatch;
+  const appUserDispatch = useAppUserContext().dispatch;
 
   // const authContext = useContext(AuthContext);
 
@@ -58,27 +58,22 @@ const SignUpModal = (props: any) => {
 
   const handleSubmit = (event: any) => {
     event?.preventDefault();
-    console.log(signUpData, 'values');
+
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential: firebase.auth.UserCredential) => {
-        firebaseDispatch(TActions.authUser(userCredential));
-        const db = firebase.firestore();
-        db.collection('Users')
-          .doc(userCredential.user!.uid)
-          .set({
-            email: email,
-            name: name,
-          })
-          .then(() => {
-            console.log('ok');
-            history.push('/');
-          })
-          .catch((error) => {
-            console.log(error.message);
-            alert(error.message);
-          });
+        // authContext.setUser(userCredential);
+        appUserDispatch(TActions.loginUser({ user: userCredential.user }));
+        console.log(userCredential.user);
+      })
+      .then(() => {
+        console.log('ok');
+        history.push('/dashboard');
+      })
+      .catch((error) => {
+        console.log(error.message);
+        alert(error.message);
       });
   };
 

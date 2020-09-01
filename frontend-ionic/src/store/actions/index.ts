@@ -1,29 +1,32 @@
 import * as types from '../types';
-import { IStateModal, IFirebaseState } from '../contexts/initialStates';
+
+import { IStateModal, IAppUserState } from '../contexts/initialStates';
 
 interface ISetModal {
   type: types.SET_MODAL;
   payload: IStateModal;
 }
 
-interface IAuthUser {
-  type: types.FIREBASE_AUTH;
-  payload: IFirebaseState;
+interface ILoginUser {
+  type: types.LOGIN_USER;
+  payload: IAppUserState;
 }
 
-export interface Actions {
-  IAuthUser: IAuthUser;
-  ISetModel: ISetModal;
+interface ILogoutUser {
+  type: types.LOGOUT_USER;
 }
 
 export const setModal = (payload: IStateModal): ISetModal => ({
   type: types.SET_MODAL,
   payload,
 });
-
-export const authUser = (payload: IFirebaseState): IAuthUser => ({
-  type: types.FIREBASE_AUTH,
-  payload,
+export const loginUser = (payload: IAppUserState): ILoginUser => ({
+  type: types.LOGIN_USER,
+  payload: payload,
 });
 
-export type { ISetModal, IAuthUser };
+export const logoutUser = (): ILogoutUser => ({
+  type: types.LOGOUT_USER,
+});
+
+export type { ISetModal, ILogoutUser, ILoginUser };

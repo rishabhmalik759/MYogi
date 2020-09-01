@@ -1,4 +1,4 @@
-import Menu from './components/Menu';
+import Menu from './components/shared/Menu';
 import Page from './pages/Page';
 import Home from './pages/Home';
 import React from 'react';
@@ -25,6 +25,7 @@ import '@ionic/react/css/display.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { ModalProvider } from './store/contexts/ModalContext';
+import { AppUserProvider } from './store/contexts/AuthContext';
 
 /* Theme variables */
 import './theme/variables.scss';
@@ -33,23 +34,25 @@ const App: React.FC = () => {
   let isLogin = false;
   return (
     <ModalProvider>
-      <IonApp className="dark-background">
-        <IonReactRouter>
-          {isLogin ? (
-            <IonSplitPane contentId="main">
-              <Menu />
-              <IonRouterOutlet id="main">
-                <Route path="/page/:name" component={Page} exact />
-                <Redirect from="/" to="/page/Inbox" exact />
+      <AppUserProvider>
+        <IonApp className="dark-background">
+          <IonReactRouter>
+            {isLogin ? (
+              <IonSplitPane contentId="main">
+                <Menu />
+                <IonRouterOutlet id="main">
+                  <Route path="/page/:name" component={Page} exact />
+                  <Redirect from="/" to="/page/Inbox" exact />
+                </IonRouterOutlet>
+              </IonSplitPane>
+            ) : (
+              <IonRouterOutlet>
+                <Route path="/" component={Home} exact />
               </IonRouterOutlet>
-            </IonSplitPane>
-          ) : (
-            <IonRouterOutlet>
-              <Route path="/" component={Home} exact />
-            </IonRouterOutlet>
-          )}
-        </IonReactRouter>
-      </IonApp>
+            )}
+          </IonReactRouter>
+        </IonApp>
+      </AppUserProvider>
     </ModalProvider>
   );
 };

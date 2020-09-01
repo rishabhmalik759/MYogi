@@ -1,41 +1,43 @@
-import React, { createContext, Dispatch, useReducer, useContext } from 'react';
+import React, {
+  createContext,
+  Dispatch,
+  useReducer,
+  useContext,
+  useEffect,
+} from 'react';
 import * as reducers from '../reducers';
 import * as TActions from '../actions';
-import { IFirebaseState, FirebaseAuthInitialState } from './initialStates';
+import { IAppUserState, AppUserInitialState } from './initialStates';
 import firebase from '../../firebase';
-import { useEffect } from 'react';
 
-export interface IFirebaseContextProps {
-  state: IFirebaseState;
-  dispatch: Dispatch<TActions.IAuthUser>;
+export interface IContextProps {
+  state: IAppUserState;
+  dispatch: Dispatch<TActions.ILoginUser | TActions.ILogoutUser>;
 }
-// export const AuthContext = React.createContext<Partial<ContextProps>>({});
-const FirebaseAuthContext = createContext<IFirebaseContextProps>({
+const appUserReducer = reducers.appUserReducer;
+
+const AppUserContext = createContext<IContextProps>({
   dispatch: () => {
     // Dispatch initial value
   },
-  state: FirebaseAuthInitialState,
+  state: AppUserInitialState,
 });
-const firebaseAuthReducer = reducers.firebaseAuthReducer;
 
-const FirebaseAuthProvider: React.FC<{}> = (props: any) => {
-  const [state, dispatch] = useReducer(
-    firebaseAuthReducer,
-    FirebaseAuthInitialState
-  );
+const AppUserProvider: React.FC<{}> = (props: any) => {
+  const [state, dispatch] = useReducer(appUserReducer, AppUserInitialState);
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user: any) => {
-      dispatch(TActions.authUser(user));
+    firebase.auth().onAuthStateChanged((user: firebase.User | null) => {
+      if (user) dispatch(TActions.loginUser({ user }));
+      else dispatch(TActions.logoutUser());
     });
   }, []);
-  return (
-    <FirebaseAuthContext.Provider value={{ state, dispatch }} {...props} />
-  );
+
+  return <AppUserContext.Provider value={{ state, dispatch }} {...props} />;
 };
 
-function useFirebaseAuthContext() {
-  return useContext(FirebaseAuthContext);
+function useAppUserContext() {
+  return useContext(AppUserContext);
 }
 
-export { FirebaseAuthProvider, useFirebaseAuthContext };
+export { AppUserProvider, useAppUserContext };

@@ -10,7 +10,7 @@ import {
   IonCardContent,
 } from '@ionic/react';
 import React from 'react';
-import { useWindowSize } from '../UseWindowSize';
+import { useWindowSize } from '../shared/UseWindowSize';
 
 const ShortVideos: React.FC = () => {
   const [width] = useWindowSize();

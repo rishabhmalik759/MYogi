@@ -8,19 +8,16 @@ export interface IStateModal {
   name: string;
 }
 
-//firebase
-export interface IFirebaseState {
+export interface IAppUserState {
   user: firebase.User | null;
-  authenticated?: boolean;
-  setUser?: firebase.User | null;
-  loadingAuthState?: boolean;
+  isAuthenticated?: boolean;
+  loading?: boolean;
 }
 
-const FirebaseAuthInitialState: IFirebaseState = {
+const AppUserInitialState: IAppUserState = {
   user: null,
-  authenticated: false,
-  setUser: null,
-  loadingAuthState: false,
+  isAuthenticated: false,
+  loading: false,
 };
 
 const AppInitialState: IAppState = {
@@ -33,4 +30,4 @@ const ModalInitialState: IStateModal = {
   name: '',
 };
 
-export { AppInitialState, ModalInitialState, FirebaseAuthInitialState };
+export { AppInitialState, ModalInitialState, AppUserInitialState };
