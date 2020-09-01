@@ -65,11 +65,12 @@ const SignUpModal = (props: any) => {
       .then((userCredential: firebase.auth.UserCredential) => {
         // authContext.setUser(userCredential);
         appUserDispatch(TActions.loginUser({ user: userCredential.user }));
-        console.log(userCredential.user);
+        console.log(userCredential);
       })
       .then(() => {
         console.log('ok');
-        history.push('/dashboard');
+        handleModalClose();
+        history.push('/inbox');
       })
       .catch((error) => {
         console.log(error.message);

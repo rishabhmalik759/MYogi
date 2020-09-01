@@ -5,7 +5,7 @@ import React from 'react';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import './App.scss';
 import { IonReactRouter } from '@ionic/react-router';
-import { Redirect, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -31,25 +31,21 @@ import { AppUserProvider } from './store/contexts/AuthContext';
 import './theme/variables.scss';
 
 const App: React.FC = () => {
-  let isLogin = false;
   return (
     <ModalProvider>
       <AppUserProvider>
         <IonApp className="dark-background">
           <IonReactRouter>
-            {isLogin ? (
-              <IonSplitPane contentId="main">
-                <Menu />
-                <IonRouterOutlet id="main">
-                  <Route path="/page/:name" component={Page} exact />
-                  <Redirect from="/" to="/page/Inbox" exact />
-                </IonRouterOutlet>
-              </IonSplitPane>
-            ) : (
-              <IonRouterOutlet>
-                <Route path="/" component={Home} exact />
+            <IonSplitPane contentId="main">
+              <Menu />
+              <IonRouterOutlet id="main">
+                <Route path="/page/:name" component={Page} exact />
+                {/* <Redirect from="/" to="/page/Inbox" exact /> */}
               </IonRouterOutlet>
-            )}
+            </IonSplitPane>
+            <IonRouterOutlet>
+              <Route path="/" component={Home} exact />
+            </IonRouterOutlet>
           </IonReactRouter>
         </IonApp>
       </AppUserProvider>
