@@ -23,7 +23,7 @@ import { useAppUserContext } from '../../../store/contexts/AuthContext';
 
 export const signUpModalName = 'SIGNUP_MODAL';
 
-const SignUpModal = (props: any) => {
+const SignUpModal = () => {
   const { dispatch } = useModalContext();
   const appUserDispatch = useAppUserContext().dispatch;
 
