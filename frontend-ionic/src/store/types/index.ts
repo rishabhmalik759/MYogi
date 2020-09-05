@@ -1,9 +1,13 @@
-export const SET_MODAL = 'SET_MODAL';
-export type SET_MODAL = typeof SET_MODAL;
+//Modal Action Types
+export const SHOW_MODAL = 'SHOW_MODAL';
+export const HIDE_MODAL = 'HIDE_MODAL';
+export type HIDE_MODAL = typeof HIDE_MODAL;
+export type SHOW_MODAL = typeof SHOW_MODAL;
 
-//Firebase Login
-export const LOGIN_USER = 'LOGIN_USER';
-export const LOGOUT_USER = 'LOGOUT_USER';
+//Loading
+export const LOAD_APP_LOADING = 'LOAD_APP_LOADING';
+export type LOAD_APP_LOADING = typeof LOAD_APP_LOADING;
 
-export type LOGIN_USER = typeof LOGIN_USER;
-export type LOGOUT_USER = typeof LOGOUT_USER;
+type Types = LOAD_APP_LOADING | SHOW_MODAL | HIDE_MODAL;
+
+export default Types;

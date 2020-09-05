@@ -1,32 +1,31 @@
-import * as types from '../types';
+import Types, * as types from '../types';
+import { InitialAppState, IAppState, IModalState } from '../initialState';
+import { ActionCreator, Action, Dispatch } from 'redux';
+import { type } from 'os';
 
-import { IStateModal, IAppUserState } from '../contexts/initialStates';
-
-interface ISetModal {
-  type: types.SET_MODAL;
-  payload: IStateModal;
+//Modal
+export interface IModalAction extends Action {
+  type: Types;
+  payload: IModalState;
 }
 
-interface ILoginUser {
-  type: types.LOGIN_USER;
-  payload: IAppUserState;
-}
-
-interface ILogoutUser {
-  type: types.LOGOUT_USER;
-}
-
-export const setModal = (payload: IStateModal): ISetModal => ({
-  type: types.SET_MODAL,
-  payload,
+export const hideModal: ActionCreator<IModalAction> = (
+  payload: IModalState
+) => ({
+  type: types.HIDE_MODAL,
+  payload: payload,
 });
-export const loginUser = (payload: IAppUserState): ILoginUser => ({
-  type: types.LOGIN_USER,
+export const showModal: ActionCreator<IModalAction> = (
+  payload: IModalState
+) => ({
+  type: types.SHOW_MODAL,
   payload: payload,
 });
 
-export const logoutUser = (): ILogoutUser => ({
-  type: types.LOGOUT_USER,
-});
+// export const setModal = (payload: IModalState, action:types.SHOW_MODAL|types.HIDE_MODAL) => (
+//   dispatch: Dispatch<IModalAction>
+// ) => {
+//   switch action
 
-export type { ISetModal, ILogoutUser, ILoginUser };
+//   dispatch(modalActions(payload));
+// };
