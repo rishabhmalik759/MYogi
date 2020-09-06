@@ -1,4 +1,7 @@
 import { combineReducers } from 'redux';
 import { modalReducer } from './modalReducer';
 
-export default combineReducers({ modalReducer });
+const rootReducer = combineReducers({ modal: modalReducer });
+export type AppState = ReturnType<typeof rootReducer>;
+
+export default rootReducer;

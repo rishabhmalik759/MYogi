@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, Dispatch } from 'react';
 
 //modals
 import {
@@ -14,30 +14,27 @@ import {
   IonImg,
 } from '@ionic/react';
 import { closeCircle } from 'ionicons/icons';
-import { useModalContext } from '../../../store/contexts/ModalContext';
-import * as TActions from '../../../store/actions';
 import { modalNames } from '../Modal';
-import { useHistory } from 'react-router-dom';
-import firebase from '../../../firebase';
-import { useAppUserContext } from '../../../store/contexts/AuthContext';
+// import { useHistory } from 'react-router-dom';
+// import firebase from '../../../firebase';
+import { useDispatch } from 'react-redux';
+import {
+  IModalActions,
+  hideModal,
+  showModal,
+} from '../../../store/actions/modalActions';
 
 export const signUpModalName = 'SIGNUP_MODAL';
 
 const SignUpModal = () => {
-  const { dispatch } = useModalContext();
-  const appUserDispatch = useAppUserContext().dispatch;
-
-  // const authContext = useContext(AuthContext);
+  const modalDispatch = useDispatch<Dispatch<IModalActions>>();
 
   const handleModalClose = () => {
-    dispatch(TActions.setModal({ modalActive: false, name: '' }));
+    modalDispatch(hideModal());
   };
 
   const openLoginModal = async () => {
-    await handleModalClose;
-    await dispatch(
-      TActions.setModal({ modalActive: true, name: modalNames.loginModalName })
-    );
+    modalDispatch(showModal(modalNames.loginModalName));
   };
   //form data
   const [signUpData, setSignUpData] = useState({
@@ -54,28 +51,27 @@ const SignUpModal = () => {
   };
   //end form data
 
-  const history = useHistory();
+  // const history = useHistory();
 
   const handleSubmit = (event: any) => {
-    event?.preventDefault();
-
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((userCredential: firebase.auth.UserCredential) => {
-        // authContext.setUser(userCredential);
-        appUserDispatch(TActions.loginUser({ user: userCredential.user }));
-        console.log(userCredential);
-      })
-      .then(() => {
-        console.log('ok');
-        handleModalClose();
-        history.push('/inbox');
-      })
-      .catch((error) => {
-        console.log(error.message);
-        alert(error.message);
-      });
+    // event?.preventDefault();
+    // firebase
+    //   .auth()
+    //   .createUserWithEmailAndPassword(email, password)
+    //   .then((userCredential: firebase.auth.UserCredential) => {
+    //     // authContext.setUser(userCredential);
+    //     appUserDispatch(TActions.loginUser({ user: userCredential.user }));
+    //     console.log(userCredential);
+    //   })
+    //   .then(() => {
+    //     console.log('ok');
+    //     handleModalClose();
+    //     history.push('/inbox');
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.message);
+    //     alert(error.message);
+    //   });
   };
 
   return (

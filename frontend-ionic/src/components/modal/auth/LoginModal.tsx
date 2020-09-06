@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, Dispatch } from 'react';
 
 import {
   IonContent,
@@ -13,28 +13,26 @@ import {
   IonImg,
 } from '@ionic/react';
 import { closeCircle } from 'ionicons/icons';
-
-import { useModalContext } from '../../../store/contexts/ModalContext';
-// import { AuthContext } from '../../../store/contexts/AuthContext';
-import { setModal } from '../../../store/actions';
 import { modalNames } from '../Modal';
+import { useDispatch } from 'react-redux';
+import {
+  IModalActions,
+  hideModal,
+  showModal,
+} from '../../../store/actions/modalActions';
 // import firebase from 'firebase';
 // import { useHistory } from 'react-router-dom';
 
 export const loginModalName = 'LOGIN_MODAL';
 
 const LoginModal: React.FC = () => {
-  const { dispatch } = useModalContext();
-  // const authContext = useContext(AuthContext);
+  const modalDispatch = useDispatch<Dispatch<IModalActions>>();
 
   const handleModalClose = () => {
-    dispatch(setModal({ modalActive: false, name: '' }));
+    modalDispatch(hideModal());
   };
   const openSignUpModal = async () => {
-    await handleModalClose;
-    await dispatch(
-      setModal({ modalActive: true, name: modalNames.signUpModalName })
-    );
+    modalDispatch(showModal(modalNames.signUpModalName));
   };
 
   //form data
@@ -48,6 +46,7 @@ const LoginModal: React.FC = () => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
     console.log(loginData);
   };
+
   //end form data
 
   return (

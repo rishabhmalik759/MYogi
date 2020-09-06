@@ -1,15 +1,32 @@
-import { IAppState } from '../initialState';
-import { IModalAction } from '../actions';
+import { IModalActions } from '../actions/modalActions';
 import * as types from '../types';
-import { InitialAppState } from '../initialState';
+import { Reducer } from 'react';
 
-export const modalReducer = (state = InitialAppState, action: IModalAction) => {
-  const { payload } = action;
-  switch (action.type) {
+export type IModalState = {
+  modalActive: boolean;
+  modalName: string;
+};
+
+const initialState: IModalState = {
+  modalActive: false,
+  modalName: '',
+};
+
+export const modalReducer: Reducer<IModalState, IModalActions> = (
+  state = initialState,
+  action
+): IModalState => {
+  const { type, payload } = action;
+
+  switch (type) {
     case types.SHOW_MODAL:
-      return { ...state, modal: payload };
+      return {
+        ...state,
+        modalActive: true,
+        modalName: payload,
+      };
     case types.HIDE_MODAL:
-      return { ...state, modal: payload };
+      return { ...state, modalActive: false, modalName: '' };
     default:
       return state;
   }

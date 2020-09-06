@@ -1,25 +1,29 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Dispatch } from 'react';
 
 import { IonModal } from '@ionic/react';
 
-import { useModalContext } from '../../store/contexts/ModalContext';
-import { setModal } from '../../store/actions';
+import { useSelector, useDispatch } from 'react-redux';
+import { IModalActions, hideModal } from '../../store/actions/modalActions';
+import { AppState } from '../../store/reducers/';
+
 import LoginModal, { loginModalName } from './auth/LoginModal';
 import SignUpModal, { signUpModalName } from './auth/SignUpModal';
 
 const Modal: React.FC = () => {
-  const { state, dispatch } = useModalContext();
-  const { modalActive, name } = state;
+  const { modalName, modalActive } = useSelector(
+    (state: AppState) => state.modal
+  );
+  const modalDispatch = useDispatch<Dispatch<IModalActions>>();
 
   const handleModalClose = () => {
-    dispatch(setModal({ modalActive: false, name: '' }));
+    modalDispatch(hideModal());
   };
 
   return (
     <Fragment>
       <IonModal isOpen={modalActive} onDidDismiss={handleModalClose}>
-        {name === loginModalName && <LoginModal />}
-        {name === signUpModalName && <SignUpModal />}
+        {modalName === loginModalName && <LoginModal />}
+        {modalName === signUpModalName && <SignUpModal />}
       </IonModal>
     </Fragment>
   );

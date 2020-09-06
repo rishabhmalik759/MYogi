@@ -5,19 +5,19 @@ import {
   IonIcon,
   IonButton,
 } from '@ionic/react';
-import React from 'react';
+import React, { Dispatch } from 'react';
 import { menu, personCircle, arrowForwardCircle } from 'ionicons/icons';
-
-import { useModalContext } from '../../store/contexts/ModalContext';
-import * as TActions from '../../store/actions';
+import { IModalActions, showModal } from '../../store/actions/modalActions';
+import { useDispatch } from 'react-redux';
+// import { useModalContext } from '../../store/contexts/ModalContext';
 
 import { modalNames } from '../modal/Modal';
 
 const HomeHeader: React.FC = () => {
-  const { dispatch } = useModalContext();
+  const modalDispatch = useDispatch<Dispatch<IModalActions>>();
 
   function handleModalOpen(name: string) {
-    dispatch(TActions.setModal({ modalActive: true, name: name }));
+    modalDispatch(showModal(name));
   }
 
   return (
