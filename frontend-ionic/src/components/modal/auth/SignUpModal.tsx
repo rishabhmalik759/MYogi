@@ -24,6 +24,7 @@ import {
   showModal,
 } from '../../../store/actions/modalActions';
 
+//Name of modal
 export const signUpModalName = 'SIGNUP_MODAL';
 
 const SignUpModal = () => {
@@ -47,7 +48,6 @@ const SignUpModal = () => {
 
   const onChange = (e: any) => {
     setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
-    // console.log(signUpData);
   };
   //end form data
 

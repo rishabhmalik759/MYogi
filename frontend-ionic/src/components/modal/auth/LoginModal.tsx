@@ -23,6 +23,7 @@ import {
 // import firebase from 'firebase';
 // import { useHistory } from 'react-router-dom';
 
+//name of modal
 export const loginModalName = 'LOGIN_MODAL';
 
 const LoginModal: React.FC = () => {
