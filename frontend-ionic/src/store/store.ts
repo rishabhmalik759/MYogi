@@ -2,18 +2,33 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from './reducers';
-// import sagas from './sagas';
+import rootSaga from './sagas';
 // import { initializeApp } from 'firebase';
 
 const initialState = {};
 
-const sagaMiddleware = createSagaMiddleware();
-const middleware = [sagaMiddleware];
+export function store() {
+  const sagaMiddleware = createSagaMiddleware();
+  const middleware = [sagaMiddleware];
 
-const store = createStore(
-  rootReducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
-);
+  return {
+    ...createStore(
+      rootReducer,
+      initialState,
+      composeWithDevTools(applyMiddleware(...middleware))
+    ),
+    runSaga: sagaMiddleware.run(rootSaga),
+  };
+}
 
-export default store;
+// const sagaMiddleware = createSagaMiddleware();
+// const middleware = [sagaMiddleware];
+
+// const theStore = createStore(
+//   rootReducer,
+//   initialState,
+//   composeWithDevTools(applyMiddleware(...middleware))
+// );
+// useEffect(() => {
+//   sagaMiddleware.run;
+// });
