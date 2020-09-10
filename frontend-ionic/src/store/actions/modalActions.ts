@@ -3,7 +3,7 @@ import { ActionCreator, Action } from 'redux';
 
 //Modal
 export interface IModalActions extends Action {
-  type: types.HIDE_MODAL | types.SHOW_MODAL;
+  type: types.HIDE_MODAL | types.SHOW_MODAL | types.GOOGLE_SIGN_IN;
   payload: string;
 }
 

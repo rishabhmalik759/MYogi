@@ -20,14 +20,22 @@ import {
   hideModal,
   showModal,
 } from '../../../store/actions/modalActions';
+import * as types from '../../../store/types';
+import { IAuthActions } from '../../../store/actions/signInActions';
 // import firebase from 'firebase';
 // import { useHistory } from 'react-router-dom';
 
 //name of modal
 export const loginModalName = 'LOGIN_MODAL';
 
+interface ILoginForm {
+  email: string;
+  password: string;
+}
+
 const LoginModal: React.FC = () => {
   const modalDispatch = useDispatch<Dispatch<IModalActions>>();
+  const authDispatch = useDispatch<Dispatch<IAuthActions>>();
 
   const handleModalClose = () => {
     modalDispatch(hideModal());
@@ -84,7 +92,12 @@ const LoginModal: React.FC = () => {
             />
           </div>
           <div className="col-md-8 center p-2">
-            <IonButton color="primary">Login</IonButton>
+            <IonButton
+              color="primary"
+              onClick={() => authDispatch({ type: types.GOOGLE_SIGN_IN })}
+            >
+              Login
+            </IonButton>
           </div>
         </div>
         <div className="center">
