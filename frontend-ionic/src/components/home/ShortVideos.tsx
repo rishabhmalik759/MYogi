@@ -9,10 +9,18 @@ import {
   IonSlide,
   IonCardContent,
 } from '@ionic/react';
-import React from 'react';
+import React, { Dispatch } from 'react';
+import { useDispatch } from 'react-redux';
+import { IModalActions, showModal } from '../../store/actions/modalActions';
+import { modalNames } from '../modal/Modal';
 import { useWindowSize } from '../shared/UseWindowSize';
 
 const ShortVideos: React.FC = () => {
+  const modalDispatch = useDispatch<Dispatch<IModalActions>>();
+
+  function handleModalOpen(name: string) {
+    modalDispatch(showModal(name));
+  }
   const [width] = useWindowSize();
   const options = {
     slidesPerView: 4,
@@ -140,7 +148,12 @@ const ShortVideos: React.FC = () => {
         </IonSlide>
       </IonSlides>
       <div className="center">
-        <IonButton color="pink">Sign up now to watch more</IonButton>
+        <IonButton
+          onClick={() => handleModalOpen(modalNames.loginModalName)}
+          color="pink"
+        >
+          Sign in now to watch more
+        </IonButton>
       </div>
     </div>
   );

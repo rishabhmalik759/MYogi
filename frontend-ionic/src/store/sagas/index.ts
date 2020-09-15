@@ -11,7 +11,7 @@ function* googleLoginSaga() {
     // const user = data.user;
     const currentUser = myFirebase.auth().currentUser;
     console.log(data);
-    console.log(currentUser?.photoURL);
+    console.log(JSON.stringify(currentUser));
     // var user: firebaseTypes.user = {
     //   user_id: data.idToken,
     //   provider: data.providerId,

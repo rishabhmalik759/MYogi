@@ -4,8 +4,10 @@ import {
   IonImg,
   IonIcon,
   IonButton,
+  IonLabel,
+  IonToggle,
 } from '@ionic/react';
-import React, { Dispatch } from 'react';
+import React, { Dispatch, useState } from 'react';
 import { menu, personCircle, arrowForwardCircle } from 'ionicons/icons';
 import { IModalActions, showModal } from '../../store/actions/modalActions';
 import { useDispatch } from 'react-redux';
@@ -27,6 +29,7 @@ const HomeHeader: React.FC = () => {
           <IonButton slot="start" className="m-2">
             <IonIcon icon={menu} style={{ color: 'white' }}></IonIcon>
           </IonButton>
+
           <IonButton
             slot="end"
             className="m-2"
@@ -34,12 +37,14 @@ const HomeHeader: React.FC = () => {
           >
             <IonIcon icon={personCircle} style={{ color: 'white' }}></IonIcon>
           </IonButton>
-
-          <IonImg
-            className="logo"
-            alt="MYogi Logo"
-            src="/assets/images/logoWhite.png"
-          ></IonImg>
+          <div className="center">
+            {' '}
+            <img
+              className="logo"
+              alt="MYogi Logo"
+              src="/assets/images/logoWhite.png"
+            ></img>
+          </div>
         </IonToolbar>
       </IonHeader>
       <div
@@ -63,10 +68,8 @@ const HomeHeader: React.FC = () => {
             MYOGI is the best platform to stay fit at home through Yoga and
             Dietitian
           </p>
-          <IonButton
-            onClick={() => handleModalOpen(modalNames.signUpModalName)}
-          >
-            Sign Up for free
+          <IonButton onClick={() => handleModalOpen(modalNames.loginModalName)}>
+            Get a week free
             <IonIcon slot="end" icon={arrowForwardCircle}></IonIcon>
           </IonButton>
         </div>

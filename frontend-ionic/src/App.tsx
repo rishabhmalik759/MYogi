@@ -5,7 +5,7 @@ import React from 'react';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import './App.scss';
 import { IonReactRouter } from '@ionic/react-router';
-import { Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -34,16 +34,14 @@ const App: React.FC = () => {
   return (
     <IonApp className="dark-background">
       <IonReactRouter>
-        <IonSplitPane contentId="main">
+        <IonSplitPane contentId="main" disabled={true}>
           <Menu />
           <IonRouterOutlet id="main">
             <Route path="/page/:name" component={Page} exact />
             {/* <Redirect from="/" to="/page/Inbox" exact /> */}
+            <Route path="/" component={Home} exact />
           </IonRouterOutlet>
         </IonSplitPane>
-        <IonRouterOutlet>
-          <Route path="/" component={Home} exact />
-        </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
   );

@@ -131,3 +131,22 @@ strike.straight::before {
 .image-width {
   width: 94%;
 }
+
+//toggle
+
+ion-lable {
+  color: #fff;
+}
+
+ion-toggle {
+  --background: #fff;
+  --background-checked: #7c7c7c;
+
+  --handle-background: #7c7c7c;
+  --handle-background-checked: #fff;
+}
+
+.middle {
+  position: fixed;
+  top: 25%;
+}

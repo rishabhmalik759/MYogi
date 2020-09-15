@@ -12,13 +12,7 @@ import {
   IonInput,
   IonImg,
 } from '@ionic/react';
-import {
-  closeCircle,
-  logoFacebook,
-  logoGoogle,
-  logoLinkedin,
-  logoTwitter,
-} from 'ionicons/icons';
+import { closeCircle } from 'ionicons/icons';
 import { modalNames } from '../Modal';
 import { useDispatch } from 'react-redux';
 import {
@@ -76,36 +70,52 @@ const LoginModal: React.FC = () => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen className="login-form middle">
+      <IonContent fullscreen className="login-form">
         <div className="p-3 login-form">
-          <div className="text-light center ">
-            <p>Sign in with your preferred platform</p>
+          <div className="col-md-8 center-login p-2">
+            <IonLabel color="light">Enter your Email</IonLabel>
+            <IonInput
+              name="emailLogin"
+              type="email"
+              value={emailLogin}
+              onIonChange={(e) => onChangeLogin(e)}
+              placeholder="Email"
+            />
           </div>
-          <div className="col-md-8 center-login center p-2">
+          <div className="col-md-8 center-login p-2">
+            <IonLabel color="light">Enter your Password</IonLabel>
+            <IonInput
+              name="passwordLogin"
+              value={passwordLogin}
+              onIonChange={(e) => onChangeLogin(e)}
+              placeholder="Password"
+            />
+          </div>
+          <div className="col-md-8 center p-2">
             <IonButton
+              color="primary"
               onClick={() => authDispatch({ type: types.GOOGLE_SIGN_IN })}
-              class="m-2"
             >
-              <IonIcon icon={logoGoogle} />
-            </IonButton>
-            <IonButton class="m-2">
-              <IonIcon icon={logoFacebook} />
-            </IonButton>
-            <IonButton class="m-2">
-              <IonIcon icon={logoTwitter} />
-            </IonButton>
-            <IonButton class="m-2">
-              <IonIcon icon={logoLinkedin} />
+              Login
             </IonButton>
           </div>
         </div>
-        <div className="center"></div>
-        <div className="mt-3 center">
-          <img
+        <div className="center">
+          <div className="text-light">
+            <p>Don't have an account?</p>
+          </div>
+          <div>
+            <IonButton color="pink" onClick={openSignUpModal}>
+              Sign Up Now
+            </IonButton>
+          </div>
+        </div>
+        <div className="mt-5">
+          <IonImg
             className="logo"
             alt="MYogi Logo"
             src="/assets/images/logoWhite.png"
-          ></img>
+          ></IonImg>
           <p className="center mb-3">Get fit at home through Yoga</p>
         </div>
       </IonContent>

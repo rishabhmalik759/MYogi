@@ -22,16 +22,14 @@ const Page: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle className="text-light">{name}</IonTitle>
+          <IonTitle>{name}</IonTitle>
         </IonToolbar>
       </IonHeader>
 
-      <IonContent>
+      <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large" className="text-light">
-              {name}
-            </IonTitle>
+            <IonTitle size="large">{name}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name={name} />
