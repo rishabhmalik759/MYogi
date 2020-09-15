@@ -4,14 +4,30 @@ import * as types from '../types';
 import { userInfo } from 'os';
 import * as firebaseTypes from '../types/firebase';
 import { myFirebase } from '../../firebase';
+import { setUser } from '../actions/userActions';
 
 function* googleLoginSaga() {
   try {
     const data = yield call(rsf.auth.signInWithPopup, googleAuth);
     // const user = data.user;
-    const currentUser = myFirebase.auth().currentUser;
-    console.log(data);
-    console.log(JSON.stringify(currentUser));
+    // console.log(data);
+    if (myFirebase.auth().currentUser) {
+      const currentUser: firebase.User = myFirebase.auth().currentUser!;
+
+      const tempUser: firebaseTypes.IUser = {
+        User: {
+          uid: currentUser.uid,
+          name: currentUser.displayName,
+          type: 'rookie',
+          avatar: currentUser.photoURL,
+          email: currentUser.email,
+        },
+      };
+      yield put(setUser(tempUser));
+
+      console.log(JSON.stringify(tempUser));
+    }
+
     // var user: firebaseTypes.user = {
     //   user_id: data.idToken,
     //   provider: data.providerId,

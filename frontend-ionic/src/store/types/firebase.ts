@@ -1,22 +1,24 @@
 export interface IUser {
-  uid: string;
-  name: string;
-  type: string; // trainer, member, supervisor, admin
-  avatar: string; //url to avatar image
-  email: string;
-  country: string;
-  paid_user: boolean;
-  group_id: string;
-  current_membership: {
-    membership_id: string;
-    type: string;
-    begin_date: Date;
-    end_date: Date;
+  User: {
+    uid: string;
+    name: string | null;
+    type: string; // trainer, member, supervisor, admin
+    avatar: string | null; //url to avatar image
+    email: string | null;
+    country?: string;
+    paid_user?: boolean;
+    group_id?: string;
+    current_membership?: {
+      membership_id: string;
+      type: string;
+      begin_date: Date;
+      end_date: Date;
+    };
+    membership_history?: [
+      //sub-collection
+      { membership_id: string; type: string; begin_date: Date; end_date: Date }
+    ];
   };
-  membership_history: [
-    //sub-collection
-    { membership_id: string; type: string; begin_date: Date; end_date: Date }
-  ];
 }
 
 //remaining injury history
