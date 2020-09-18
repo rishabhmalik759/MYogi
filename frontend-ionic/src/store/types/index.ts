@@ -21,4 +21,11 @@ export type SET_USER = typeof SET_USER;
 export const REMOVE_USER = 'REMOVE_USER';
 export type REMOVE_USER = typeof REMOVE_USER;
 
+//App
+export const SET_LOADING = 'SET_LOADING';
+export type SET_LOADING = typeof SET_LOADING;
+
+export const SET_LOGIN = 'SET_LOGIN';
+export type SET_LOGIN = typeof SET_LOGIN;
+
 export default Types;

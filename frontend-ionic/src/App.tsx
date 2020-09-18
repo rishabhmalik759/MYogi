@@ -32,12 +32,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 /* Theme variables */
 import './theme/variables.scss';
 import { myFirebase } from './firebase';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { IUserActions, removeUser } from './store/actions/userActions';
+import { AppState } from './store/reducers';
+import { IonLoading, IonButton, IonContent } from '@ionic/react';
+import {
+  IAppCurrentActions,
+  setLoading,
+} from './store/actions/appCurrentActions';
 
 const App: React.FC = () => {
-  const login: Boolean = false;
+  const { loading, login } = useSelector((state: AppState) => state.appCurrent);
+
   const userDispatch = useDispatch<Dispatch<IUserActions>>();
+  const AppDispatch = useDispatch<Dispatch<IAppCurrentActions>>();
+
+  const _handleAppLoading = () => {
+    AppDispatch(setLoading(false));
+  };
 
   useEffect(() => {
     if (myFirebase.auth().currentUser === null) {
@@ -47,6 +59,13 @@ const App: React.FC = () => {
 
   return (
     <IonApp className={login ? '' : 'dark-background'}>
+      <IonLoading
+        cssClass="my-custom-class"
+        isOpen={loading}
+        onDidDismiss={_handleAppLoading}
+        message={'Please wait...'}
+        duration={7000}
+      />
       <IonReactRouter>
         <IonSplitPane contentId="main" disabled={true}>
           <Menu />

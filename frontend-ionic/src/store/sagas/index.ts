@@ -5,15 +5,21 @@ import { userInfo } from 'os';
 import * as firebaseTypes from '../types/firebase';
 import { myFirebase } from '../../firebase';
 import { setUser } from '../actions/userActions';
+import { setLoading, setLogin } from '../actions/appCurrentActions';
 
 function* googleLoginSaga() {
   try {
-    const data = yield call(rsf.auth.signInWithPopup, googleAuth);
+    console.log(myFirebase.auth().currentUser?.uid);
+
+    yield put(setLoading(true));
+    myFirebase
+      .auth()
+      .setPersistence('local')
+      .then(yield call(rsf.auth.signInWithPopup, googleAuth));
     // const user = data.user;
     // console.log(data);
     if (myFirebase.auth().currentUser) {
       const currentUser: firebase.User = myFirebase.auth().currentUser!;
-
       const tempUser: firebaseTypes.IUser = {
         User: {
           uid: currentUser.uid,
@@ -24,9 +30,10 @@ function* googleLoginSaga() {
         },
       };
       yield put(setUser(tempUser));
-
-      console.log(JSON.stringify(tempUser));
+      yield put(setLogin(true));
+      //console.log(JSON.stringify(tempUser));
     }
+    yield put(setLoading(false));
 
     // var user: firebaseTypes.user = {
     //   user_id: data.idToken,

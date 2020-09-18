@@ -1,3 +1,5 @@
+import { Timestamp } from '@firebase/firestore-types';
+
 export interface IUser {
   User: {
     uid: string;
@@ -29,10 +31,18 @@ export interface IProfile {
     name: string;
     avatar: string;
   };
+  age: number;
+  sex: string;
+  weight: number;
+  height: number;
+  bmi: number;
   email: string;
   current_workout: {
     schedule: string;
-    note: string;
+    description: string;
+    preferredTimeFrom: Timestamp;
+    preferredTimeTo: Timestamp;
+    allotedTime: string;
     begin_date: Date;
     end_date: Date;
   };
@@ -65,7 +75,7 @@ export interface IProfile {
       //sub-collection
       {
         schedule: string;
-        note: string;
+        description: string;
         begin_date: Date;
         end_date: Date;
       }
