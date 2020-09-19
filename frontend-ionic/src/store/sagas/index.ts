@@ -55,7 +55,7 @@ function* googleLoginSaga() {
 }
 
 function* checkCurrentUser() {
-  yield delay(3000);
+  yield delay(3300);
 
   const currentUser: firebase.User | null = getCurrentUser();
   try {

@@ -70,7 +70,7 @@ const App: React.FC = () => {
             <Route path="/dashboard/:name" component={Page} exact />
             <Route path="/" component={Home} exact />
             {login ? (
-              <Redirect from="/" to="/dashboard/Inbox" exact />
+              <Redirect from="/" to="/dashboard/inbox" exact />
             ) : (
               <Redirect from="/dashboard/*" to="/" exact />
             )}
