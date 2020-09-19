@@ -86,14 +86,14 @@ const Menu: React.FC = () => {
 	return (
 		<IonMenu contentId='main' type='overlay'>
 			<IonContent>
-				<IonItem>
-					<IonAvatar slot='start'>
+				<IonList id='labels-list'>
+					{' '}
+					<IonAvatar slot='end'>
 						<img src={currentUser?.photoURL as string} />
 					</IonAvatar>
 					<IonLabel>{currentUser?.displayName}</IonLabel>
-				</IonItem>
+				</IonList>
 				<IonLabel>Member</IonLabel>
-
 				<IonList id='inbox-list'>
 					{appPages.map((appPage, index) => {
 						return (
