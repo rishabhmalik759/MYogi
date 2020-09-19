@@ -28,4 +28,7 @@ export type SET_LOADING = typeof SET_LOADING;
 export const SET_LOGIN = 'SET_LOGIN';
 export type SET_LOGIN = typeof SET_LOGIN;
 
+export const CHECK_CURRENT_USER = 'CHECK_CURRENT_USER';
+export type CHECK_CURRENT_USER = typeof CHECK_CURRENT_USER;
+
 export default Types;

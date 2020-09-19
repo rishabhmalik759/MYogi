@@ -4,30 +4,28 @@ import { Reducer } from 'react';
 import { IUserActions } from '../actions/userActions';
 
 const initialUserState: IUser = {
-  User: {
-    uid: '',
-    name: '',
-    type: 'rookie',
-    avatar: '',
-    email: '',
-    country: '',
-    paid_user: false,
-    group_id: '',
-    current_membership: {
+  uid: '',
+  name: '',
+  type: 'rookie',
+  avatar: '',
+  email: '',
+  country: '',
+  paid_user: false,
+  group_id: '',
+  current_membership: {
+    membership_id: '',
+    type: '',
+    begin_date: new Date(),
+    end_date: new Date(),
+  },
+  membership_history: [
+    {
       membership_id: '',
       type: '',
       begin_date: new Date(),
       end_date: new Date(),
     },
-    membership_history: [
-      {
-        membership_id: '',
-        type: '',
-        begin_date: new Date(),
-        end_date: new Date(),
-      },
-    ],
-  },
+  ],
 };
 
 export const userReducer: Reducer<IUser, IUserActions> = (
@@ -39,16 +37,40 @@ export const userReducer: Reducer<IUser, IUserActions> = (
   switch (type) {
     case types.SET_USER:
       if (payload) {
-        console.log(JSON.stringify(payload));
         return {
           ...state,
-          User: payload.User,
+          uid: payload.uid,
+          name: payload.name,
+          type: payload.type,
+          avatar: payload.avatar,
+          email: payload.email,
         };
       } else return state;
     case types.REMOVE_USER:
       return {
         ...state,
-        User: initialUserState.User,
+        uid: '',
+        name: '',
+        type: 'rookie',
+        avatar: '',
+        email: '',
+        country: '',
+        paid_user: false,
+        group_id: '',
+        current_membership: {
+          membership_id: '',
+          type: '',
+          begin_date: new Date(),
+          end_date: new Date(),
+        },
+        membership_history: [
+          {
+            membership_id: '',
+            type: '',
+            begin_date: new Date(),
+            end_date: new Date(),
+          },
+        ],
       };
     default:
       return state;

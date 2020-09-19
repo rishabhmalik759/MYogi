@@ -1,13 +1,5 @@
-import {
-  IonHeader,
-  IonToolbar,
-  IonImg,
-  IonIcon,
-  IonButton,
-  IonLabel,
-  IonToggle,
-} from '@ionic/react';
-import React, { Dispatch, useState } from 'react';
+import { IonHeader, IonToolbar, IonIcon, IonButton } from '@ionic/react';
+import React, { Dispatch } from 'react';
 import { menu, personCircle, arrowForwardCircle } from 'ionicons/icons';
 import { IModalActions, showModal } from '../../store/actions/modalActions';
 import { useDispatch } from 'react-redux';

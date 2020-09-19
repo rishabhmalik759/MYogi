@@ -7,7 +7,7 @@ import React, { Dispatch, useEffect } from 'react';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import './App.scss';
 import { IonReactRouter } from '@ionic/react-router';
-import { Redirect, Route, useHistory } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -31,11 +31,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 /* Theme variables */
 import './theme/variables.scss';
-import { myFirebase } from './firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { IUserActions, removeUser } from './store/actions/userActions';
+import { checkCurrentUser, IUserActions } from './store/actions/userActions';
 import { AppState } from './store/reducers';
-import { IonLoading, IonButton, IonContent } from '@ionic/react';
+import { IonLoading } from '@ionic/react';
 import {
   IAppCurrentActions,
   setLoading,
@@ -52,10 +51,8 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    if (myFirebase.auth().currentUser === null) {
-      userDispatch(removeUser());
-    }
-  });
+    userDispatch(checkCurrentUser());
+  }, [userDispatch]);
 
   return (
     <IonApp className={login ? '' : 'dark-background'}>
@@ -64,7 +61,7 @@ const App: React.FC = () => {
         isOpen={loading}
         onDidDismiss={_handleAppLoading}
         message={'Please wait...'}
-        duration={7000}
+        //duration={20000}
       />
       <IonReactRouter>
         <IonSplitPane contentId="main" disabled={true}>

@@ -1,4 +1,4 @@
-import React, { Fragment, useState, Dispatch } from 'react';
+import React, { Fragment, Dispatch } from 'react';
 
 import {
   IonContent,
@@ -8,9 +8,6 @@ import {
   IonButtons,
   IonButton,
   IonIcon,
-  IonLabel,
-  IonInput,
-  IonImg,
 } from '@ionic/react';
 import {
   closeCircle,
@@ -19,25 +16,13 @@ import {
   logoLinkedin,
   logoTwitter,
 } from 'ionicons/icons';
-import { modalNames } from '../Modal';
 import { useDispatch } from 'react-redux';
-import {
-  IModalActions,
-  hideModal,
-  showModal,
-} from '../../../store/actions/modalActions';
+import { IModalActions, hideModal } from '../../../store/actions/modalActions';
 import * as types from '../../../store/types';
 import { IAuthActions } from '../../../store/actions/signInActions';
-// import firebase from 'firebase';
-// import { useHistory } from 'react-router-dom';
 
 //name of modal
 export const loginModalName = 'LOGIN_MODAL';
-
-interface ILoginForm {
-  email: string;
-  password: string;
-}
 
 const LoginModal: React.FC = () => {
   const modalDispatch = useDispatch<Dispatch<IModalActions>>();
@@ -46,23 +31,6 @@ const LoginModal: React.FC = () => {
   const handleModalClose = () => {
     modalDispatch(hideModal());
   };
-  const openSignUpModal = async () => {
-    modalDispatch(showModal(modalNames.signUpModalName));
-  };
-
-  //form data
-  const [loginData, setLoginData] = useState({
-    emailLogin: '',
-    passwordLogin: '',
-  });
-  const { emailLogin, passwordLogin } = loginData;
-
-  const onChangeLogin = (e: any) => {
-    setLoginData({ ...loginData, [e.target.name]: e.target.value });
-    console.log(loginData);
-  };
-
-  //end form data
 
   return (
     <Fragment>

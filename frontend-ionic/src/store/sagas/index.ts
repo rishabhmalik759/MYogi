@@ -1,80 +1,83 @@
-import { put, all, call, takeEvery } from 'redux-saga/effects';
-import { rsf, googleAuth, facebookAuth } from '../../firebase';
+import {
+  put,
+  all,
+  call,
+  takeEvery,
+  takeLatest,
+  delay,
+} from 'redux-saga/effects';
+import { rsf, googleAuth } from '../../firebase';
 import * as types from '../types';
-import { userInfo } from 'os';
 import * as firebaseTypes from '../types/firebase';
 import { myFirebase } from '../../firebase';
 import { setUser } from '../actions/userActions';
 import { setLoading, setLogin } from '../actions/appCurrentActions';
+import { setDocument, getDocument, getCurrentUser } from './firebase';
 
 function* googleLoginSaga() {
   try {
     console.log(myFirebase.auth().currentUser?.uid);
 
     yield put(setLoading(true));
-    myFirebase
-      .auth()
-      .setPersistence('local')
-      .then(yield call(rsf.auth.signInWithPopup, googleAuth));
-    // const user = data.user;
-    // console.log(data);
-    if (myFirebase.auth().currentUser) {
-      const currentUser: firebase.User = myFirebase.auth().currentUser!;
-      const tempUser: firebaseTypes.IUser = {
-        User: {
+
+    yield call(rsf.auth.signInWithPopup, googleAuth);
+
+    const currentUser: firebase.User | null = getCurrentUser();
+
+    if (currentUser) {
+      const snapshot = yield call(getDocument, 'Users', currentUser.uid);
+      console.log('Snapshot is = ', JSON.stringify(snapshot.data()));
+      if (snapshot.exists) {
+        const data = snapshot.data();
+        yield put(setUser(data));
+        yield put(setLogin(true));
+        yield put(setLoading(false));
+      } else {
+        const tempUser: firebaseTypes.IUser = {
           uid: currentUser.uid,
           name: currentUser.displayName,
-          type: 'rookie',
+          type: 'member',
           avatar: currentUser.photoURL,
           email: currentUser.email,
-        },
-      };
-      yield put(setUser(tempUser));
-      yield put(setLogin(true));
-      //console.log(JSON.stringify(tempUser));
+        };
+
+        yield call(setDocument, 'Users', currentUser.uid, true, tempUser);
+        console.log('created new user');
+        yield put(setUser(tempUser));
+        yield put(setLogin(true));
+        yield put(setLoading(false));
+      }
     }
-    yield put(setLoading(false));
-
-    // var user: firebaseTypes.user = {
-    //   user_id: data.idToken,
-    //   provider: data.providerId,
-    // };
-
-    // user = snapshot.doc(data.idToken);
-
-    // const doc = yield call(rsf.firestore.addDocument, 'Users', data.idToken);
-    // console.log(doc);
-    // const temp = yield call(
-    //   rsf.firestore.setDocument,
-    //   `Users/${data.idToken}`,
-    //   { user },
-    //   { merge: true }
-    // );
-
-    // console.log(temp);
-    // const snapshot = yield call(rsf.firestore.getCollection, 'Users');
-    // snapshot.doc(data.idToken).set({ user });
-    // snapshot.forEach((user: any) => {
-    //   console.log(user.id);
-    // });
   } catch (error) {
+    yield put(setLoading(false));
     console.log(error);
   }
 }
 
-function* getCollection() {
-  const snapshot = yield call(rsf.firestore.getCollection, 'users');
-  let users: any;
-  snapshot.forEach((user: any) => {
-    users = {
-      ...users,
-      [user.id]: user.data(),
-    };
-  });
+function* checkCurrentUser() {
+  yield delay(3000);
 
-  console.log(users);
+  const currentUser: firebase.User | null = getCurrentUser();
+  try {
+    if (currentUser !== null) {
+      console.log('user exist = ', currentUser.uid);
+      const snapshot = yield call(getDocument, 'Users', currentUser.uid);
+      yield put(setUser(snapshot));
+      yield put(setLogin(true));
+      yield put(setLoading(false));
+    } else {
+      yield put(setLoading(false));
+      console.log('no user');
+    }
+  } catch (error) {
+    yield put(setLoading(false));
+    console.log(error);
+  }
 }
 
 export default function* rootSaga() {
-  yield all([takeEvery(types.GOOGLE_SIGN_IN, googleLoginSaga)]);
+  yield all([
+    takeEvery(types.GOOGLE_SIGN_IN, googleLoginSaga),
+    takeLatest(types.CHECK_CURRENT_USER, checkCurrentUser),
+  ]);
 }

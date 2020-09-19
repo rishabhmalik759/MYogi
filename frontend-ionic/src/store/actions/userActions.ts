@@ -4,7 +4,7 @@ import { ActionCreator, Action } from 'redux';
 
 //Modal
 export interface IUserActions extends Action {
-  type: types.SET_USER | types.REMOVE_USER;
+  type: types.SET_USER | types.REMOVE_USER | types.CHECK_CURRENT_USER;
   payload?: firebaseTypes.IUser;
 }
 
@@ -16,4 +16,8 @@ export const setUser: ActionCreator<IUserActions> = (
 });
 export const removeUser: ActionCreator<IUserActions> = () => ({
   type: types.REMOVE_USER,
+});
+
+export const checkCurrentUser: ActionCreator<IUserActions> = () => ({
+  type: types.CHECK_CURRENT_USER,
 });

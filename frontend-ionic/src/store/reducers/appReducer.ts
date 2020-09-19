@@ -9,7 +9,7 @@ export type IAppCurrentState = {
 
 const initialAppState: IAppCurrentState = {
   login: false,
-  loading: false,
+  loading: true,
 };
 
 export const appCurrentReducer: Reducer<
