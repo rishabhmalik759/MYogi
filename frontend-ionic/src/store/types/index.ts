@@ -18,6 +18,9 @@ export type GOOGLE_SIGN_IN = typeof GOOGLE_SIGN_IN;
 export const SET_USER = 'SET_USER';
 export type SET_USER = typeof SET_USER;
 
+export const LOGOUT_USER = 'LOGOUT_USER';
+export type LOGOUT_USER = typeof LOGOUT_USER;
+
 export const REMOVE_USER = 'REMOVE_USER';
 export type REMOVE_USER = typeof REMOVE_USER;
 
