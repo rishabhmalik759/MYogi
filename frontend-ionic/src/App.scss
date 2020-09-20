@@ -108,8 +108,12 @@ h5 {
   background: #181818;
 }
 .background-light {
-  --ion-background-color: #f9f9f9;
-  background: #f9f9f9;
+  --ion-background-color: #fafbfc;
+  background: #fafbfc;
+}
+.background-grey {
+  --ion-background-color: #eeeeee;
+  background-color: #cac9c9;
 }
 .background-dark {
   background: #181818;
@@ -144,4 +148,11 @@ h5 {
   --ion-color-contrast-rgb: var(--ion-color-pink-contrast-rgb) !important;
   --ion-color-shade: var(--ion-color-pink-shade) !important;
   --ion-color-tint: var(--ion-color-pink-tint) !important;
+}
+
+//menu
+.menuItem {
+  ion-lable {
+    color: #f8f9fa;
+  }
 }

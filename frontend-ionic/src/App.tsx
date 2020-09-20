@@ -1,7 +1,11 @@
 //issue
 //not redirecting to home after logout or 404
 import Menu from './components/shared/Menu';
-import Page from './pages/Page';
+import Sessions from './pages/Sessions';
+import Profile from './pages/Profile';
+import Account from './pages/Account';
+import Support from './pages/Support';
+import Packs from './pages/Packs';
 import Home from './pages/Home';
 import React, { Dispatch, useEffect } from 'react';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
@@ -55,7 +59,7 @@ const App: React.FC = () => {
   }, [userDispatch]);
 
   return (
-    <IonApp className={login ? '' : 'dark-background'}>
+    <IonApp className={login ? 'background-light' : 'dark-background'}>
       <IonLoading
         cssClass="my-custom-class"
         isOpen={loading}
@@ -67,10 +71,14 @@ const App: React.FC = () => {
         <IonSplitPane contentId="main" disabled={true}>
           <Menu />
           <IonRouterOutlet id="main">
-            <Route path="/dashboard/:name" component={Page} exact />
+            <Route path="/dashboard/sessions" component={Sessions} exact />
+            <Route path="/dashboard/profile" component={Profile} exact />
+            <Route path="/dashboard/account" component={Account} exact />
+            <Route path="/dashboard/packs" component={Packs} exact />
+            <Route path="/dashboard/support" component={Support} exact />
             <Route path="/" component={Home} exact />
             {login ? (
-              <Redirect from="/" to="/dashboard/inbox" exact />
+              <Redirect from="/" to="/dashboard/sessions" exact />
             ) : (
               <Redirect from="/dashboard/*" to="/" exact />
             )}
