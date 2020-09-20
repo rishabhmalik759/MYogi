@@ -18,7 +18,7 @@ const Page: React.FC = () => {
     <IonPage>
       <IonHeader>
         <DashboardTopBar />
-        <IonToolbar>
+        <IonToolbar className="background-grey ">
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
