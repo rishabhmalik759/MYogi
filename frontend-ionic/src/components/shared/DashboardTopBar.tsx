@@ -22,7 +22,7 @@ const DashboardTopBar: React.FC = () => {
         <IonIcon icon={logOut} style={{ color: 'white' }}></IonIcon>
       </IonButton>
 
-      <h3 className="text-light">MYOGI</h3>
+      <h3 className="text-light ml-2">MYOGI</h3>
     </IonToolbar>
   );
 };

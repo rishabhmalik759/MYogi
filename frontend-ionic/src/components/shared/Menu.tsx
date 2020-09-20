@@ -1,4 +1,5 @@
 import {
+  IonAvatar,
   IonContent,
   IonIcon,
   IonItem,
@@ -7,19 +8,21 @@ import {
   IonListHeader,
   IonMenu,
   IonMenuToggle,
-  IonNote,
 } from '@ionic/react';
+import { useSelector } from 'react-redux';
 
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { bookmarkOutline } from 'ionicons/icons';
 import './Menu.css';
 import { appPages } from '../../routes';
+import { AppState } from '../../store/reducers';
 
 const labels = ['Favorite Videos', 'About Us', 'FAQ'];
 
 const Menu: React.FC = () => {
   const location = useLocation();
+  const { avatar, name } = useSelector((state: AppState) => state.userState);
 
   return (
     <IonMenu
@@ -29,8 +32,17 @@ const Menu: React.FC = () => {
     >
       <IonContent className="text-light">
         <IonList id="inbox-list">
-          <IonListHeader>Inbox</IonListHeader>
-          <IonNote>hi@ionicframework.com</IonNote>
+          <IonMenuToggle autoHide={true}>
+            <div className="center mb-4">
+              <IonAvatar className="center mb-2">
+                <img alt="temp" src={avatar}></img>
+              </IonAvatar>
+              <IonLabel>
+                <h2>{name}</h2>
+                <Link to="/dashboard/profile">VIEW PROFILE</Link>
+              </IonLabel>
+            </div>
+          </IonMenuToggle>
           {appPages.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={true}>
