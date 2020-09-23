@@ -13,6 +13,7 @@
     "@types/node": "^12.12.24",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
+    "@types/react-redux": "^7.1.9",
     "@types/react-router": "^5.1.4",
     "@types/react-router-dom": "^5.1.3",
     "bootstrap": "^4.5.0",
@@ -56,5 +57,9 @@
       "last 1 safari version"
     ]
   },
-  "description": "MYogi Application"
+  "description": "MYogi Application",
+  "devDependencies": {
+    "@welldone-software/why-did-you-render": "^4.3.2",
+    "redux-logger": "^3.0.6"
+  }
 }
