@@ -30,7 +30,7 @@ const Community: React.FC = () => {
           >
             <img
               className="image-width"
-              src="/assets/images/earth - Copy.png"
+              src="/assets/images/earth.png"
               alt="MYOGI Community"
             ></img>
           </div>
