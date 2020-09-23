@@ -13,22 +13,30 @@ import ShortVideos from '../components/home/ShortVideos';
 import Footer from '../components/home/Footer';
 import Modal from '../components/modal/Modal';
 
-const Home: React.FC = () => {
-  return (
-    <IonPage>
-      <IonContent>
-        <Modal></Modal>
-        <HomeHeader></HomeHeader>
-        <HeaderStrip></HeaderStrip>
-        <Transformation></Transformation>
-        <Community></Community>
-        <Pricing></Pricing>
-        <Reviews></Reviews>
-        <ShortVideos></ShortVideos>
-        <Footer></Footer>
-      </IonContent>
-    </IonPage>
-  );
-};
+class Home extends React.PureComponent {
+  render() {
+    return (
+      <IonPage>
+        <IonContent>
+          <Modal></Modal>
+          <HomeHeader></HomeHeader>
+          <HeaderStrip></HeaderStrip>
+          <Transformation></Transformation>
+          <Community></Community>
+          <Pricing></Pricing>
+          <Reviews></Reviews>
+          <ShortVideos></ShortVideos>
+          <Footer></Footer>
+        </IonContent>
+      </IonPage>
+    );
+  }
+}
+
+// const Home: React.FC = () => {
+//   return (
+
+//   );
+// };
 
 export default Home;
