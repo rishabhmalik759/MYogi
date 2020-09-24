@@ -11,6 +11,6 @@ export const userCreated = functions.firestore
     const userRef = db.doc(`Users/${data.uid}`);
 
     return userRef.update({
-      type: 'trainer',
+      type: 'member',
     });
   });
