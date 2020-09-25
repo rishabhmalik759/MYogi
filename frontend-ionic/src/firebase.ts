@@ -12,6 +12,11 @@ googleAuth.addScope('profile');
 googleAuth.addScope('email');
 const facebookAuth = new firebase.auth.FacebookAuthProvider();
 const twitterAuth = new firebase.auth.TwitterAuthProvider();
+
+myFirebase.firestore().settings({
+  host: 'localhost:8080',
+  ssl: false,
+});
 const rsf = new ReduxSagaFirebase(myFirebase);
 
 //Enabling persistance
