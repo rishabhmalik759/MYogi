@@ -1,5 +1,5 @@
 // import * as functions from 'firebase-functions';
-export { userCreated } from './firestore';
+
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //

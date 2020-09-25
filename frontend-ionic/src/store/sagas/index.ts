@@ -62,7 +62,8 @@ function* checkCurrentUser() {
     if (currentUser !== null) {
       console.log('user exist = ', currentUser.uid);
       const snapshot = yield call(getDocument, 'Users', currentUser.uid);
-      yield put(setUser(snapshot));
+      console.log(snapshot.data());
+      yield put(setUser(snapshot.data()));
       yield put(setLogin(true));
       yield put(setLoading(false));
     } else {

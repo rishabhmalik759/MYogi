@@ -2,7 +2,11 @@
   "name": "functions",
   "scripts": {
     "lint": "tslint --project tsconfig.json",
+<<<<<<< HEAD
     "build": "tslint --project tsconfig.json && tsc",
+=======
+    "build": "./node_modules/.bin/tslint -p tslint.json && ./node_modules/.bin/tsc",
+>>>>>>> 1a99ee559f80102cd81031b5efc5ca5e77beff70
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
@@ -15,8 +19,12 @@
   "main": "lib/index.js",
   "dependencies": {
     "firebase-admin": "^8.10.0",
+<<<<<<< HEAD
     "firebase-functions": "^3.6.1",
     "watch": "^1.0.2"
+=======
+    "firebase-functions": "^3.6.1"
+>>>>>>> 1a99ee559f80102cd81031b5efc5ca5e77beff70
   },
   "devDependencies": {
     "tslint": "^5.12.0",

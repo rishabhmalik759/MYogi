@@ -1,3 +1,5 @@
+import React from 'react';
+//icons
 import {
   IonButtons,
   IonContent,
@@ -8,9 +10,7 @@ import {
   IonToolbar,
 } from '@ionic/react';
 
-import React from 'react';
 import ExploreContainer from '../components/shared/ExploreContainer';
-import './Page.scss';
 import DashboardTopBar from '../components/shared/DashboardTopBar';
 
 const Page: React.FC = () => {
