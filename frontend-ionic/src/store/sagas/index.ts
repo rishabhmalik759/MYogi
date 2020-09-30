@@ -62,24 +62,11 @@ function* checkCurrentUser() {
 		if (null !== currentUser) {
 			console.log('user exist = ', currentUser.uid);
 			const snapshot = yield call(getDocument, 'Users', currentUser.uid);
-			if (snapshot.exist) {
-				const data = snapshot.data();
-				yield put(setUser(data));
-				yield put(setLogin(true));
-				yield put(setLoading(false));
-			} else {
-				const tempUser: firebaseTypes.IUser = {
-					uid: '',
-					name: '',
-					type: '',
-					avatar: '',
-					email: '',
-				};
 
-				yield put(setUser(tempUser));
-				yield put(setLoading(false));
-				console.log('user does not exists.'); // ask up or down
-			}
+			const data = snapshot.data();
+			yield put(setUser(data));
+			yield put(setLogin(true));
+			yield put(setLoading(false));
 		} else {
 			yield put(setLoading(false));
 			console.log('no user');

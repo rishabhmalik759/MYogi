@@ -17,6 +17,7 @@ export const userCreated = functions.firestore
 				name: data.name,
 				type: data.type,
 			},
+			level: 'Rookie',
 		};
 		return db
 			.collection('Profile')
