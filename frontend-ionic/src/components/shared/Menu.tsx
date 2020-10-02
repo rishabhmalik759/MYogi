@@ -22,7 +22,14 @@ const labels = ['Favorite Videos', 'About Us', 'FAQ'];
 
 const Menu: React.FC = () => {
   const location = useLocation();
-  const { avatar, name } = useSelector((state: AppState) => state.userState);
+  const { avatar, name, type } = useSelector(
+    (state: AppState) => state.userState
+  );
+
+  const userDispatch = useDispatch<Dispatch<IUserActions>>();
+  const _handleLogOut = () => {
+    return userDispatch(logoutUser());
+  };
 
   return (
     <IonMenu
@@ -39,6 +46,7 @@ const Menu: React.FC = () => {
               </IonAvatar>
               <IonLabel>
                 <h2>{name}</h2>
+                <h5>{type}</h5>
                 <Link to="/dashboard/profile">VIEW PROFILE</Link>
               </IonLabel>
             </div>
@@ -51,6 +59,7 @@ const Menu: React.FC = () => {
                     className={
                       location.pathname === appPage.url ? 'selected' : ''
                     }
+                    onClick={_handleLogOut}
                     routerLink="/"
                     routerDirection="none"
                     lines="none"

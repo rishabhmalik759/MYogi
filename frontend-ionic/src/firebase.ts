@@ -13,27 +13,27 @@ googleAuth.addScope('email');
 const facebookAuth = new firebase.auth.FacebookAuthProvider();
 const twitterAuth = new firebase.auth.TwitterAuthProvider();
 
-myFirebase.firestore().settings({
-  host: 'localhost:8080',
-  ssl: false,
-});
+// myFirebase.firestore().settings({
+//   host: 'localhost:8080',
+//   ssl: false,
+// });
 const rsf = new ReduxSagaFirebase(myFirebase);
 
 //Enabling persistance
 myFirebase
-  .firestore()
-  .enablePersistence()
-  .catch(function (err) {
-    if (err.code === 'failed-precondition') {
-      // Multiple tabs open, persistence can only be enabled
-      // in one tab at a a time.
-      // ...
-    } else if (err.code === 'unimplemented') {
-      // The current browser does not support all of the
-      // features required to enable persistence
-      // ...
-    }
-  });
+	.firestore()
+	.enablePersistence()
+	.catch(function (err) {
+		if (err.code === 'failed-precondition') {
+			// Multiple tabs open, persistence can only be enabled
+			// in one tab at a a time.
+			// ...
+		} else if (err.code === 'unimplemented') {
+			// The current browser does not support all of the
+			// features required to enable persistence
+			// ...
+		}
+	});
 //database
 // rsf.firestore.
 export { rsf, googleAuth, facebookAuth, twitterAuth, myFirebase };

@@ -2,8 +2,10 @@
 //not redirecting to home after logout or 404
 import Menu from './components/shared/Menu';
 import Sessions from './pages/Sessions';
-import Profile from './pages/Profile';
 import Account from './pages/Account';
+import ProfileSummary from './pages/ProfileSummary';
+import ProfileOverview from './pages/ProfileOverview';
+
 import Support from './pages/Support';
 import Packs from './pages/Packs';
 import Home from './pages/Home';
@@ -40,53 +42,59 @@ import { checkCurrentUser, IUserActions } from './store/actions/userActions';
 import { AppState } from './store/reducers';
 import { IonLoading } from '@ionic/react';
 import {
-  IAppCurrentActions,
-  setLoading,
+	IAppCurrentActions,
+	setLoading,
 } from './store/actions/appCurrentActions';
 
 const App: React.FC = () => {
-  const { loading, login } = useSelector((state: AppState) => state.appCurrent);
+	const { loading, login } = useSelector((state: AppState) => state.appCurrent);
 
-  const userDispatch = useDispatch<Dispatch<IUserActions>>();
-  const AppDispatch = useDispatch<Dispatch<IAppCurrentActions>>();
+	const userDispatch = useDispatch<Dispatch<IUserActions>>();
+	const AppDispatch = useDispatch<Dispatch<IAppCurrentActions>>();
 
-  const _handleAppLoading = () => {
-    AppDispatch(setLoading(false));
-  };
+	const _handleAppLoading = () => {
+		AppDispatch(setLoading(false));
+	};
 
-  useEffect(() => {
-    userDispatch(checkCurrentUser());
-  }, [userDispatch]);
+	useEffect(() => {
+		userDispatch(checkCurrentUser());
+	}, [userDispatch]);
 
-  return (
-    <IonApp className={login ? 'background-light' : 'dark-background'}>
-      <IonLoading
-        cssClass="my-custom-class"
-        isOpen={loading}
-        onDidDismiss={_handleAppLoading}
-        message={'Please wait...'}
-        //duration={20000}
-      />
-      <IonReactRouter>
-        <IonSplitPane contentId="main" disabled={true}>
-          <Menu />
-          <IonRouterOutlet id="main">
-            <Route path="/dashboard/sessions" component={Sessions} exact />
-            <Route path="/dashboard/profile" component={Profile} exact />
-            <Route path="/dashboard/account" component={Account} exact />
-            <Route path="/dashboard/packs" component={Packs} exact />
-            <Route path="/dashboard/support" component={Support} exact />
-            <Route path="/" component={Home} exact />
-            {login ? (
-              <Redirect from="/" to="/dashboard/sessions" exact />
-            ) : (
-              <Redirect from="/dashboard/*" to="/" exact />
-            )}
-          </IonRouterOutlet>
-        </IonSplitPane>
-      </IonReactRouter>
-    </IonApp>
-  );
+	return (
+		<IonApp className={login ? 'background-light' : 'dark-background'}>
+			<IonLoading
+				cssClass='my-custom-class'
+				isOpen={loading}
+				onDidDismiss={_handleAppLoading}
+				message={'Please wait...'}
+				//duration={20000}
+			/>
+			<IonReactRouter>
+				<IonSplitPane contentId='main' disabled={true}>
+					<Menu />
+					<IonRouterOutlet id='main'>
+						<Route path='/dashboard/sessions' component={Sessions} exact />
+						<Route path='/dashboard/profile' component={ProfileSummary} exact />
+						<Route
+							path='/dashboard/overview'
+							component={ProfileOverview}
+							exact
+						/>
+
+						<Route path='/dashboard/account' component={Account} exact />
+						<Route path='/dashboard/packs' component={Packs} exact />
+						<Route path='/dashboard/support' component={Support} exact />
+						<Route path='/' component={Home} exact />
+						{login ? (
+							<Redirect from='/' to='/dashboard/sessions' exact />
+						) : (
+							<Redirect from='/dashboard/*' to='/' exact />
+						)}
+					</IonRouterOutlet>
+				</IonSplitPane>
+			</IonReactRouter>
+		</IonApp>
+	);
 };
 
 export default App;

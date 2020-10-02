@@ -18,6 +18,7 @@
   },
   "main": "lib/index.js",
   "dependencies": {
+    "@firebase/firestore-types": "^1.13.0",
     "firebase-admin": "^8.10.0",
 <<<<<<< HEAD
     "firebase-functions": "^3.6.1",

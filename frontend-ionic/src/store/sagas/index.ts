@@ -59,11 +59,12 @@ function* checkCurrentUser() {
 
   const currentUser: firebase.User | null = getCurrentUser();
   try {
-    if (currentUser !== null) {
+    if (null !== currentUser) {
       console.log('user exist = ', currentUser.uid);
       const snapshot = yield call(getDocument, 'Users', currentUser.uid);
-      console.log(snapshot.data());
-      yield put(setUser(snapshot.data()));
+
+      const data = snapshot.data();
+      yield put(setUser(data));
       yield put(setLogin(true));
       yield put(setLoading(false));
     } else {
