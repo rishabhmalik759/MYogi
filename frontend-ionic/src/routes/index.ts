@@ -28,14 +28,8 @@ export const appPages: AppPage[] = [
 		mdIcon: videocamSharp,
 	},
 	{
-		title: 'Profile Summary',
+		title: 'Profile',
 		url: '/dashboard/profile',
-		iosIcon: personOutline,
-		mdIcon: personSharp,
-	},
-	{
-		title: 'Profile Overview',
-		url: '/dashboard/overview',
 		iosIcon: personOutline,
 		mdIcon: personSharp,
 	},
