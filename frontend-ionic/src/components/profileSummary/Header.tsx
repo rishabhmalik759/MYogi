@@ -1,11 +1,18 @@
 import {
+	IonButton,
 	IonButtons,
+	IonCard,
+	IonCardContent,
 	IonContent,
 	IonHeader,
+	IonIcon,
+	IonItem,
+	IonLabel,
 	IonMenuButton,
 	IonTitle,
 	IonToolbar,
 } from '@ionic/react';
+import { pin } from 'ionicons/icons';
 
 import React, { Fragment } from 'react';
 import DashboardTopBar from '../shared/DashboardTopBar';
@@ -21,18 +28,9 @@ const Header: React.FC = () => {
 					<IonButtons slot='start'>
 						<IonMenuButton />
 					</IonButtons>
-					<IonTitle>Profile</IonTitle>
+					<IonTitle>Profile Summary</IonTitle>
 				</IonToolbar>
 			</IonHeader>
-
-			<IonContent fullscreen>
-				<IonHeader collapse='condense'>
-					<IonToolbar>
-						<IonTitle size='large'>Profile</IonTitle>
-					</IonToolbar>
-				</IonHeader>
-				<ExploreContainer name='Profile' />
-			</IonContent>
 		</Fragment>
 	);
 };

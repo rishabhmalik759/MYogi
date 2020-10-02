@@ -1,189 +1,194 @@
 import { Timestamp } from '@firebase/firestore-types';
 
 export interface IUser {
-  uid: string;
-  name: string | null;
-  type: string; // trainer, member, supervisor, admin
-  avatar: string | null; //url to avatar image
-  email: string | null;
-  country?: string;
-  paid_user?: boolean;
-  group_id?: string;
-  current_membership?: {
-    membership_id: string;
-    type: string;
-    begin_date: Date;
-    end_date: Date;
-  };
-  membership_history?: [
-    //sub-collection
-    { membership_id: string; type: string; begin_date: Date; end_date: Date }
-  ];
+	uid: string;
+	name: string | null;
+	type: string; // trainer, member, supervisor, admin
+	avatar: string | null; //url to avatar image
+	email: string | null;
+	age?: number | null;
+	sex?: string | null;
+	weight?: number | null;
+	height?: number | null;
+	bmi?: number | null;
+	country?: string;
+	paid_user?: boolean;
+	group_id?: string;
+	current_membership?: {
+		membership_id: string;
+		type: string;
+		begin_date: Date;
+		end_date: Date;
+	};
+	membership_history?: [
+		//sub-collection
+		{ membership_id: string; type: string; begin_date: Date; end_date: Date }
+	];
 }
 
 //remaining injury history
 export interface IProfile {
-  user: {
-    uid: string;
-    type: string;
-    name: string;
-    avatar: string;
-  };
-  age: number;
-  sex: string;
-  weight: number;
-  height: number;
-  bmi: number;
-  email: string;
-  current_workout: {
-    schedule: string;
-    description: string;
-    preferredTimeFrom: Timestamp;
-    preferredTimeTo: Timestamp;
-    allotedTime: string;
-    begin_date: Date;
-    end_date: Date;
-  };
-  current_disorders: [
-    {
-      name: string;
-      type: string;
-      description: string;
-      duration: string; //10_days
-    }
-  ];
-  level: string; //rookie, pro, expert, legend
-  rating: number;
-  member_group: {
-    //if user == member
-    gid: string;
-    type: string;
-    name: string;
-  };
-  member_groups: [
-    //if user == trainer / supervisor
-    {
-      gid: string;
-      type: string;
-      name: string;
-    }
-  ];
-  profile_history: {
-    workout_history: [
-      //sub-collection
-      {
-        schedule: string;
-        description: string;
-        begin_date: Date;
-        end_date: Date;
-      }
-    ];
-    disorders_history: [
-      //sub-collection
-      {
-        name: string;
-        type: string;
-        duration: string;
-        description: string;
-      }
-    ];
-  };
+	user: {
+		uid: string;
+		type: string;
+		name: string;
+		avatar: string;
+	};
+	age: number;
+	sex: string;
+	weight: number;
+	height: number;
+	bmi: number;
+	email: string;
+	current_workout: {
+		schedule: string;
+		description: string;
+		preferredTimeFrom: Timestamp;
+		preferredTimeTo: Timestamp;
+		allotedTime: string;
+		begin_date: Date;
+		end_date: Date;
+	};
+	current_disorders: [
+		{
+			name: string;
+			type: string;
+			description: string;
+			duration: string; //10_days
+		}
+	];
+	level: string; //rookie, pro, expert, legend
+	rating: number;
+	member_group: {
+		//if user == member
+		gid: string;
+		type: string;
+		name: string;
+	};
+	member_groups: [
+		//if user == trainer / supervisor
+		{
+			gid: string;
+			type: string;
+			name: string;
+		}
+	];
+	profile_history: {
+		workout_history: [
+			//sub-collection
+			{
+				schedule: string;
+				description: string;
+				begin_date: Date;
+				end_date: Date;
+			}
+		];
+		disorders_history: [
+			//sub-collection
+			{
+				name: string;
+				type: string;
+				duration: string;
+				description: string;
+			}
+		];
+	};
 }
 
 export interface IGroup {
-  gid: string;
-  name: string;
-  type: string;
-  current_members: [
-    {
-      uid: string;
-      name: string;
-      avatar: string;
-      start_date: Date;
-      end_date: Date;
-    }
-  ];
-  current_trainer: [
-    {
-      uid: string;
-      name: string;
-      avatar: string;
-      start_date: Date;
-      end_date: Date;
-    }
-  ];
-  current_schedule: {
-    type: string;
-    description: string;
-    begin_date: string;
-    end_date: string;
-  };
-  supervisor: {
-    uid: string;
-    name: string;
-    avatar: string;
-    begin_date: Date;
-    end_Date: string;
-  };
-  avg_rating: number; //avg of session rating
-  session: {
-    session_id: string;
-    session_name: string;
-    start_time: string;
-    end_time: string;
-    rating: [number];
-    avg_rating: number;
-    video_uri: string;
-  };
-  group_history: {
-    // sub collection
-    trainer_history: [
-      {
-        uid: string;
-        name: string;
-        avatar: string;
-        start_date: Date;
-        end_date: Date;
-      }
-    ];
-    members_history: [
-      //sub collection
-      {
-        uid: string;
-        name: string;
-        avatar: string;
-        start_date: Date;
-        end_date: Date;
-      }
-    ];
-    schedule_history: [
-      {
-        type: string;
-        description: string;
-        begin_date: string;
-        end_date: string;
-      }
-    ];
-    supervisor_history: [
-      {
-        uid: string;
-        name: string;
-        avatar: string;
-        begin_date: Date;
-        end_Date: string;
-      }
-    ];
-    session_history: [
-      {
-        session_id: string;
-        session_name: string;
-        start_time: string;
-        end_time: string;
-        avg_rating: number;
-        video_uri: string;
-      }
-    ];
-  };
+	gid: string;
+	name: string;
+	type: string;
+	current_members: [
+		{
+			uid: string;
+			name: string;
+			avatar: string;
+			start_date: Date;
+			end_date: Date;
+		}
+	];
+	current_trainer: [
+		{
+			uid: string;
+			name: string;
+			avatar: string;
+			start_date: Date;
+			end_date: Date;
+		}
+	];
+	current_schedule: {
+		type: string;
+		description: string;
+		begin_date: string;
+		end_date: string;
+	};
+	supervisor: {
+		uid: string;
+		name: string;
+		avatar: string;
+		begin_date: Date;
+		end_Date: string;
+	};
+	avg_rating: number; //avg of session rating
+	session: {
+		session_id: string;
+		session_name: string;
+		start_time: string;
+		end_time: string;
+		rating: [number];
+		avg_rating: number;
+		video_uri: string;
+	};
+	group_history: {
+		// sub collection
+		trainer_history: [
+			{
+				uid: string;
+				name: string;
+				avatar: string;
+				start_date: Date;
+				end_date: Date;
+			}
+		];
+		members_history: [
+			//sub collection
+			{
+				uid: string;
+				name: string;
+				avatar: string;
+				start_date: Date;
+				end_date: Date;
+			}
+		];
+		schedule_history: [
+			{
+				type: string;
+				description: string;
+				begin_date: string;
+				end_date: string;
+			}
+		];
+		supervisor_history: [
+			{
+				uid: string;
+				name: string;
+				avatar: string;
+				begin_date: Date;
+				end_Date: string;
+			}
+		];
+		session_history: [
+			{
+				session_id: string;
+				session_name: string;
+				start_time: string;
+				end_time: string;
+				avg_rating: number;
+				video_uri: string;
+			}
+		];
+	};
 }
 
 //Response

@@ -35,7 +35,6 @@ export interface IProfile {
 	weight?: number;
 	height?: number;
 	bmi?: number;
-	email?: string;
 	current_workout?: {
 		schedule: string;
 		description: string;

@@ -11,8 +11,8 @@ import {
 import React from 'react';
 import ExploreContainer from '../components/shared/ExploreContainer';
 import './Page.scss';
-import Header from '../components/profile/Header';
-const Page: React.FC = () => {
+import Header from '../components/profileOverview/Header';
+const ProfileOverview: React.FC = () => {
 	return (
 		<IonPage>
 			<Header />
@@ -20,4 +20,4 @@ const Page: React.FC = () => {
 	);
 };
 
-export default Page;
+export default ProfileOverview;
