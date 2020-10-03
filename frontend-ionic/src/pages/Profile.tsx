@@ -13,7 +13,8 @@ import ExploreContainer from '../components/shared/ExploreContainer';
 import './Page.scss';
 import Header from '../components/profileSummary/Header';
 import ProfileInformation from '../components/profileSummary/PersonalInformation';
-const ProfileSummary: React.FC = () => {
+import '../components/profileSummary/Profile.scss';
+const Profile: React.FC = () => {
 	return (
 		<IonPage>
 			<Header />
@@ -26,4 +27,4 @@ const ProfileSummary: React.FC = () => {
 	);
 };
 
-export default ProfileSummary;
+export default Profile;

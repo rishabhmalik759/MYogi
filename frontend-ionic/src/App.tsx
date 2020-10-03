@@ -3,8 +3,7 @@
 import Menu from './components/shared/Menu';
 import Sessions from './pages/Sessions';
 import Account from './pages/Account';
-import ProfileSummary from './pages/ProfileSummary';
-import ProfileOverview from './pages/ProfileOverview';
+import Profile from './pages/Profile';
 
 import Support from './pages/Support';
 import Packs from './pages/Packs';
@@ -74,12 +73,7 @@ const App: React.FC = () => {
 					<Menu />
 					<IonRouterOutlet id='main'>
 						<Route path='/dashboard/sessions' component={Sessions} exact />
-						<Route path='/dashboard/profile' component={ProfileSummary} exact />
-						<Route
-							path='/dashboard/overview'
-							component={ProfileOverview}
-							exact
-						/>
+						<Route path='/dashboard/profile' component={Profile} exact />
 
 						<Route path='/dashboard/account' component={Account} exact />
 						<Route path='/dashboard/packs' component={Packs} exact />
