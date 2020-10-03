@@ -75,41 +75,30 @@ const PersonalInformation: React.FC = () => {
               <p>{level}</p>
             </IonText>
           </div>
-          <div>
-            <IonList className="profile-list">
-              <IonItem>
-                <IonLabel color="primary">BMI</IonLabel>
+          <IonCard className="p-0">
+            <IonList className="profile-list p-0">
+              <IonItem lines="inset">
+                <IonLabel>BMI</IonLabel>
                 <IonBadge color="primary">23</IonBadge>
               </IonItem>
+              <IonItem lines="inset">
+                <IonLabel>Age</IonLabel>
+                <IonBadge color="primary">27</IonBadge>
+              </IonItem>
+              <IonItem lines="inset">
+                <IonLabel>Height</IonLabel>
+                <IonBadge color="primary">183 CM</IonBadge>
+              </IonItem>
+              <IonItem lines="inset">
+                <IonLabel>Weight</IonLabel>
+                <IonBadge color="primary">85 KG</IonBadge>
+              </IonItem>
+              <IonItem lines="inset">
+                <IonLabel>Sex</IonLabel>
+                <IonBadge color="primary">Male</IonBadge>
+              </IonItem>
             </IonList>
-          </div>
-          <div className="left-align">
-            <IonChip color="primary">
-              <IonLabel>
-                <strong>BMI</strong> &nbsp;&nbsp;&nbsp;&nbsp;23
-              </IonLabel>
-            </IonChip>
-          </div>
-          <div className="row  profile-personal-card center">
-            <IonCard slot="start">
-              <IonCardHeader>
-                <IonCardTitle>Age</IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent>25</IonCardContent>
-            </IonCard>
-            <IonCard>
-              <IonCardHeader>
-                <IonCardTitle>Weight</IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent>25</IonCardContent>
-            </IonCard>
-            <IonCard>
-              <IonCardHeader>
-                <IonCardTitle>Height</IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent>25</IonCardContent>
-            </IonCard>
-          </div>
+          </IonCard>
           <div className="col text-dark">
             <IonPopover
               isOpen={showPopover.open}
