@@ -44,6 +44,7 @@ export const userReducer: Reducer<IUser, IUserActions> = (
           type: payload.type,
           avatar: payload.avatar,
           email: payload.email,
+          level: payload.level,
         };
       } else return state;
     case types.REMOVE_USER:

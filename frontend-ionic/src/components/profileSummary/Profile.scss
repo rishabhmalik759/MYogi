@@ -1,9 +1,42 @@
 //Personal Information
-.parent {
-	background-image: url(https://s.tmimgcdn.com/scr/800x500/84100/abstract-vibrant-liquid-backgrounds-vol1-background_84151-original.jpg);
-	background-repeat: no-repeat;
-	background-position: center center;
-	-webkit-background-size: cover;
-	height: 250px;
-	background-size: cover;
+.profile-background {
+  background-image: url(https://s.tmimgcdn.com/scr/800x500/84100/abstract-vibrant-liquid-backgrounds-vol1-background_84151-original.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  height: 250px;
+  background-size: cover;
+}
+
+.left-align {
+  margin-left: 25px !important;
+  text-align: left;
+}
+
+.profile-photo {
+  width: 8em;
+  top: -30px;
+  position: 'relative';
+  border-radius: 50% !important;
+  border: '2px solid #fff';
+  margin-bottom: -20px;
+  img {
+    border-radius: 50% !important;
+  }
+}
+.edit-profile-button {
+  top: -10px;
+  position: relative;
+}
+
+.profile-personal-card {
+  ion-card {
+    width: 95px;
+  }
+}
+
+.profile-list {
+  ion-item {
+    --background: rgb(240, 240, 240);
+  }
 }

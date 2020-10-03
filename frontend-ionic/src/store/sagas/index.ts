@@ -39,6 +39,7 @@ function* googleLoginSaga() {
           type: 'member',
           avatar: currentUser.photoURL,
           email: currentUser.email,
+          level: 'Rookie',
         };
 
         yield call(setDocument, 'Users', currentUser.uid, true, tempUser);
