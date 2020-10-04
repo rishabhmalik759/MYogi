@@ -42,7 +42,7 @@ export interface IProfile {
 	bmi?: number;
 	email?: string;
 	current_workout?: {
-		schedule: string;
+		name: string;
 		description: string;
 		preferredTimeFrom: Timestamp;
 		preferredTimeTo: Timestamp;

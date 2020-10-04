@@ -121,6 +121,12 @@ const PersonalInformation: React.FC = () => {
 						<IonList className='profile-list p-0'>
 							<IonItem lines='inset'>
 								<IonLabel>
+									<strong>Workout Overview</strong>
+									<div>Basic stretching and Yoga flows.</div>
+								</IonLabel>
+							</IonItem>
+							<IonItem lines='inset'>
+								<IonLabel>
 									<div>
 										<strong>Next class is on</strong>
 									</div>
@@ -141,12 +147,6 @@ const PersonalInformation: React.FC = () => {
 											</IonChip>
 										</IonFab>
 									</div>
-								</IonLabel>
-							</IonItem>
-							<IonItem lines='inset'>
-								<IonLabel>
-									<strong>Workout Overview</strong>
-									<div>Basic stretching and Yoga flows.</div>
 								</IonLabel>
 							</IonItem>
 						</IonList>
@@ -249,7 +249,7 @@ const PersonalInformation: React.FC = () => {
 						</IonList>
 					</IonCard>
 					<IonCard className='mt-4'>
-						<IonList className='profile-list p-0'>
+						<IonList className='profile-list p-0 wrapping-list'>
 							<IonListHeader
 								onClick={() => setShowDisordersHistory(!showDisordersHistory)}
 							>
@@ -269,37 +269,48 @@ const PersonalInformation: React.FC = () => {
 							</IonListHeader>
 							<div
 								className={
-									showDisordersHistory ? 'expand-wrapper' : 'collapsed'
+									showDisordersHistory ? `expand-wrapper` : 'collapsed'
 								}
 							>
 								<IonItem lines='inset'>
-									<IonLabel>
+									<IonLabel className='text-wrap'>
 										<div>
-											<strong>Next class is on</strong>
+											<div>
+												<strong>Back Pain</strong>
+											</div>
+											<IonText color='primary'>Type</IonText>
+											<div>Body Pain</div>
 										</div>
-										<div> 10 am 23 October 2020</div>
+										<div>
+											<IonText color='primary'>Description</IonText>
+											<div>
+												Pain in lower back due to surgery SOMETHING something
+												something
+											</div>
+										</div>
+										<div>
+											<IonText color='primary'>Duration</IonText>
+											<div>2 Years</div>
+										</div>
 									</IonLabel>
 								</IonItem>
 								<IonItem lines='inset'>
-									<IonLabel>
+									<IonLabel className='text-wrap'>
 										<div>
-											<strong>Alloted Time</strong>
+											<div>
+												<strong>Shoulder Pain</strong>
+											</div>
+											<IonText color='primary'>Type</IonText>
+											<div>Body Pain</div>
 										</div>
-										<div className='row mb-4'>
-											<div className='stick-left'>10 am</div>
-
-											<IonFab vertical='bottom' horizontal='end' slot='fixed'>
-												<IonFabButton size='small'>
-													<IonIcon size='small' icon={pencil} />
-												</IonFabButton>
-											</IonFab>
+										<div>
+											<IonText color='primary'>Description</IonText>
+											<div>Bike Accident</div>
 										</div>
-									</IonLabel>
-								</IonItem>
-								<IonItem lines='inset'>
-									<IonLabel>
-										<strong>Workout Overview</strong>
-										<div>Basic stretching and Yoga flows.</div>
+										<div>
+											<IonText color='primary'>Duration</IonText>
+											<div>6 Months</div>
+										</div>
 									</IonLabel>
 								</IonItem>
 							</div>
