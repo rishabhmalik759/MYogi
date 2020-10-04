@@ -1,54 +1,67 @@
 //Personal Information
 .profile-background {
-	background-image: url(https://s.tmimgcdn.com/scr/800x500/84100/abstract-vibrant-liquid-backgrounds-vol1-background_84151-original.jpg);
-	background-repeat: no-repeat;
-	background-position: center center;
-	-webkit-background-size: cover;
-	height: 250px;
-	background-size: cover;
+  background-image: url(https://s.tmimgcdn.com/scr/800x500/84100/abstract-vibrant-liquid-backgrounds-vol1-background_84151-original.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  height: 250px;
+  background-size: cover;
 }
 
 .left-align {
-	margin-left: 25px !important;
-	text-align: left;
+  margin-left: 25px !important;
+  text-align: left;
+}
+.left-align-no-margin {
+  text-align: left;
 }
 
 .profile-photo {
-	width: 8em;
-	top: -30px;
-	position: 'relative';
-	border-radius: 50% !important;
-	border: '2px solid #fff';
-	margin-bottom: -20px;
-	img {
-		border-radius: 50% !important;
-	}
+  width: 8em;
+  top: -30px;
+  position: 'relative';
+  border-radius: 50% !important;
+  border: '2px solid #fff';
+  margin-bottom: -20px;
+  img {
+    border-radius: 50% !important;
+  }
 }
 .edit-profile-button {
-	top: -10px;
-	position: relative;
+  top: -10px;
+  position: relative;
 }
 
 .profile-personal-card {
-	ion-card {
-		width: 95px;
-	}
+  ion-card {
+    width: 95px;
+  }
 }
 
 .profile-list {
-	ion-item {
-		--background: rgb(240, 240, 240);
-	}
+  ion-item {
+    --background: rgb(240, 240, 240);
+  }
 }
 
 .stick-right {
-	position: absolute;
-	right: 15px;
+  position: absolute;
+  right: 15px;
 }
 .stick-left {
-	position: absolute;
-	left: 0;
+  position: absolute;
+  left: 0;
 }
 .no-margin {
-	margin: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+.expand-wrapper {
+  transition: max-height 0.4s ease-in-out;
+  overflow: hidden;
+  height: auto;
+}
+
+.collapsed {
+  max-height: 0 !important;
 }
