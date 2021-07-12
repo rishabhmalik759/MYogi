@@ -9,14 +9,15 @@ import {
   IonMenu,
   IonMenuToggle,
 } from '@ionic/react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import React from 'react';
+import React, { Dispatch } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { bookmarkOutline } from 'ionicons/icons';
 import './Menu.css';
 import { appPages } from '../../routes';
 import { AppState } from '../../store/reducers';
+import { IUserActions, logoutUser } from '../../store/actions/userActions';
 
 const labels = ['Favorite Videos', 'About Us', 'FAQ'];
 
